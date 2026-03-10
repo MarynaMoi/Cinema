@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+}
+
+#root {
+  margin: 0 auto;
+  text-align: center;
+  border: 2px solid black;
+  width: 800px;
+  height: 100%;
+}

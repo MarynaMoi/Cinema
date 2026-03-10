@@ -1,0 +1,18 @@
+{
+  "contacts": [
+    {
+      "firstName": "Микола",
+      "lastName": "Шевченко",
+      "email": "mykola.shevchenko@example.com",
+      "phone": "+380931234321",
+      "id": "1"
+    },
+    {
+      "firstName": "Петро",
+      "lastName": "Кононенко",
+      "email": "petro.shevchenko@example.com",
+      "phone": "+380881234321",
+      "id": "2"
+    }
+  ]
+}
