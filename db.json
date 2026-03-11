@@ -1,18 +1,211 @@
 {
-  "contacts": [
+  "actors": [
     {
-      "firstName": "Микола",
-      "lastName": "Шевченко",
-      "email": "mykola.shevchenko@example.com",
-      "phone": "+380931234321",
-      "id": "1"
+      "id": 1,
+      "fullname": "Brad Pitt",
+      "birthday": "1963-12-18",
+      "nationality": "American",
+      "movies": [
+        "Fight Club",
+        "Seven",
+        "Troy",
+        "World War Z",
+        "Once Upon a Time in Hollywood"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/90/Brad_Pitt_2019_by_Glenn_Francis.jpg"
     },
     {
-      "firstName": "Петро",
-      "lastName": "Кононенко",
-      "email": "petro.shevchenko@example.com",
-      "phone": "+380881234321",
-      "id": "2"
+      "id": 2,
+      "fullname": "Angelina Jolie",
+      "birthday": "1975-06-04",
+      "nationality": "American",
+      "movies": [
+        "Maleficent",
+        "Lara Croft: Tomb Raider",
+        "Mr. & Mrs. Smith",
+        "Girl, Interrupted",
+        "Wanted"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Angelina_Jolie_2019.jpg"
+    },
+    {
+      "id": 3,
+      "fullname": "Leonardo DiCaprio",
+      "birthday": "1974-11-11",
+      "nationality": "American",
+      "movies": [
+        "Titanic",
+        "Inception",
+        "The Revenant",
+        "The Wolf of Wall Street",
+        "Shutter Island"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg"
+    }
+  ],
+  "directors": [
+    {
+      "id": 1,
+      "fullname": "Christopher Nolan",
+      "birthday": "1970-07-30",
+      "nationality": "British-American",
+      "movies": [
+        "Inception",
+        "Interstellar",
+        "The Dark Knight",
+        "Tenet",
+        "Oppenheimer"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/95/Christopher_Nolan_Cannes_2018.jpg"
+    },
+    {
+      "id": 2,
+      "fullname": "Quentin Tarantino",
+      "birthday": "1963-03-27",
+      "nationality": "American",
+      "movies": [
+        "Pulp Fiction",
+        "Kill Bill: Vol. 1",
+        "Django Unchained",
+        "Inglourious Basterds",
+        "Once Upon a Time in Hollywood"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Quentin_Tarantino_2015.jpg"
+    },
+    {
+      "id": 3,
+      "fullname": "Steven Spielberg",
+      "birthday": "1946-12-18",
+      "nationality": "American",
+      "movies": [
+        "Jurassic Park",
+        "Schindler's List",
+        "E.T. the Extra-Terrestrial",
+        "Saving Private Ryan",
+        "Jaws"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Steven_Spielberg_by_Gage_Skidmore.jpg"
+    }
+  ],
+  "movies": [
+    {
+      "id": 1,
+      "title": "Inception",
+      "directors": [
+        "Christopher Nolan"
+      ],
+      "actors": [
+        "Leonardo DiCaprio",
+        "Joseph Gordon-Levitt",
+        "Elliot Page"
+      ],
+      "studios": [
+        "Warner Bros.",
+        "Legendary Pictures"
+      ],
+      "poster": "https://upload.wikimedia.org/wikipedia/en/7/7f/Inception_ver3.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Titanic",
+      "directors": [
+        "James Cameron"
+      ],
+      "actors": [
+        "Leonardo DiCaprio",
+        "Kate Winslet"
+      ],
+      "studios": [
+        "20th Century Fox",
+        "Paramount Pictures"
+      ],
+      "poster": "https://upload.wikimedia.org/wikipedia/en/2/22/Titanic_poster.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Pulp Fiction",
+      "directors": [
+        "Quentin Tarantino"
+      ],
+      "actors": [
+        "John Travolta",
+        "Samuel L. Jackson",
+        "Uma Thurman"
+      ],
+      "studios": [
+        "Miramax Films"
+      ],
+      "poster": "https://upload.wikimedia.org/wikipedia/en/8/82/Pulp_Fiction_cover.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Jurassic Park",
+      "directors": [
+        "Steven Spielberg"
+      ],
+      "actors": [
+        "Sam Neill",
+        "Laura Dern",
+        "Jeff Goldblum"
+      ],
+      "studios": [
+        "Universal Pictures"
+      ],
+      "poster": "https://upload.wikimedia.org/wikipedia/en/e/e7/Jurassic_Park_poster.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Fight Club",
+      "directors": [
+        "David Fincher"
+      ],
+      "actors": [
+        "Brad Pitt",
+        "Edward Norton",
+        "Helena Bonham Carter"
+      ],
+      "studios": [
+        "20th Century Fox"
+      ],
+      "poster": "https://upload.wikimedia.org/wikipedia/en/f/fc/Fight_Club_poster.jpg"
+    }
+  ],
+  "studios": [
+    {
+      "id": 1,
+      "title": "Warner Bros.",
+      "location": "Burbank, California, USA",
+      "foundationYear": 1923,
+      "movies": [
+        "Inception",
+        "The Dark Knight",
+        "Harry Potter and the Sorcerer's Stone"
+      ],
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Warner_Bros._Pictures_2023_logo.svg"
+    },
+    {
+      "id": 2,
+      "title": "Universal Pictures",
+      "location": "Universal City, California, USA",
+      "foundationYear": 1912,
+      "movies": [
+        "Jurassic Park",
+        "Fast & Furious",
+        "Jaws"
+      ],
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/6/67/Universal_Pictures_logo.svg"
+    },
+    {
+      "id": 3,
+      "title": "Paramount Pictures",
+      "location": "Hollywood, California, USA",
+      "foundationYear": 1912,
+      "movies": [
+        "Titanic",
+        "Mission: Impossible",
+        "Transformers"
+      ],
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Paramount_Pictures_2022_logo.svg"
     }
   ]
 }
