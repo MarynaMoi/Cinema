@@ -26,7 +26,7 @@
         "Girl, Interrupted",
         "Wanted"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Angelina_Jolie_2019.jpg"
+      "image": "https://www.rbc.ua/static/img/_/d/_dzholi__gettyimages_1348671770_305bea5b9fb9c05eea9fae54cdbaa990_480x270.jpg"
     },
     {
       "id": "3",
@@ -43,27 +43,22 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg"
     },
     {
-      "id": "rPwNml7oCilsf_zfiRjua",
+      "id": "bgroDTG2gCfDFsUajdNYP",
       "fullname": "пп",
-      "birthday": "пп",
-      "nationality": "пп",
-      "movies": [],
-      "image": ""
-    },
-    {
-      "id": "ihXRMVXgrOPlvtbs8LR2V",
-      "fullname": "пп",
-      "birthday": "пп",
-      "nationality": "пп",
-      "movies": [],
-      "image": ""
-    },
-    {
-      "id": "tDN8N4w16FIZ7iRS8GJam",
-      "fullname": "пп",
-      "birthday": "пп",
-      "nationality": "пп",
-      "movies": [],
+      "birthday": "",
+      "nationality": "пппппп",
+      "movies": [
+        "пп",
+        "ппппппп ппппппппп пппппппп",
+        "",
+        "ппппппп ппппппппп пппппппп",
+        "",
+        "ппппппп ппппппппп пппппппп",
+        "",
+        "ппппппп ппппппппп пппппппп",
+        "",
+        "ппппппп ппппппппп пппппппп"
+      ],
       "image": ""
     }
   ],

@@ -106,9 +106,9 @@ const actorsSlice = createSlice({
     removeActor (state, { payload }) {
       state.actors = state.actors.filter(item => item.id !== payload);
     },
-    selectActor (state, { payload }) {
-      state.actorItem = payload;
-    },
+    // selectActor (state, { payload }) {
+    //   state.actorItem = payload;
+    // },
 
   },
   extraReducers: builder => {
@@ -125,5 +125,5 @@ const actorsSlice = createSlice({
 
 const { actions, reducer } = actorsSlice;
 const { addActor, updateactor, getActors, removeActor } = actions;
-export const { selectActor, } = actions;
+// export const { selectActor, } = actions;
 export default reducer;

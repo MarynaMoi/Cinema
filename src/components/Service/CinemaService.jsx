@@ -1,6 +1,8 @@
-import { Routes, Route, Outlet } from "react-router-dom";
-import Actors from "../Actors/Actors";
+import { Routes, Route} from "react-router-dom";
+
 import ActorsForm from "../Actors/ActorsForm";
+
+import ActorsItem from "../Actors/ActorItem";
 
 export default function CinemaService() {
   return (
@@ -8,7 +10,7 @@ export default function CinemaService() {
       <h2>CinemaService</h2>
       <Routes>
           <Route path="/actors/new" element={<ActorsForm />} />
-          <Route path="/actors/:id" element={<ActorsForm />} />
+          <Route path="/actors/:id" element={<ActorsItem />} />
           <Route path="/actors/:id/edit" element={<ActorsForm />} />
       </Routes>
     

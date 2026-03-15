@@ -1,13 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  Link,
-  useNavigate,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom';
-import { Stack } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
+import { Stack, Button } from '@mui/material';
 
 import { getActorsAsync } from './../../store/slices/actorsSlices';
 import ActorsList from '../Actors/ActorsList';
@@ -28,7 +22,9 @@ export default function Actors () {
   return (
     <Stack spacing={2}>
       <Link to='/actors/new'>
-        <button>Add actor</button>
+        <Button variant='contained' sx={{ m: 2 }}>
+          Add actor
+        </Button>
       </Link>
       {/* Link не визначає, що показати на новій стр, він лише змінює URL(to), для статичних посилань */}
       {/* Route визначає що показувати (element) для конкретного URL(path) */}
@@ -49,4 +45,3 @@ export default function Actors () {
     //       </Routes>
   );
 }
-

@@ -1,53 +1,57 @@
-import { useDispatch } from 'react-redux';
-import {
-  deleteActorItemAsync,
-  selectActor,
-} from '../../store/slices/actorsSlices';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { Box, Typography, Avatar } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-import { Paper } from '@mui/material';
+function ActorItem () {
+  const { id } = useParams(); //отримую id з URL
+  const actors = useSelector(state => state.actorsList.actors);
 
-import CloseIcon from '@mui/icons-material/Close';
-
-function ActorItem ({ actor }) {
-  const dispatch = useDispatch();
-
-  const handleDelete = ev => {
-    console.log('handleDelete', actor.id)
-    ev.preventDefault()
-    // ev.stopPropagation();
-    dispatch(deleteActorItemAsync(actor.id));
-  };
-
-
-
+  const actor = actors.find(item => String(item.id) === String(id));
+  if (!actor) {
+    return <Typography>Loading actor data...</Typography>;
+  }
   return (
-    <Paper
-      elevation={1}
+    <Box
       sx={{
-        m: '10px',
+        p: 3,
         display: 'flex',
-        alignItems: 'center',
-        cursor: 'pointer',
-        '&:hover': {
-          boxShadow: 4,
-          transform: 'translateY(-2px)',
-        },
+        flexDirection: { xs: 'column', md: 'row' },
+        gap: 4,
       }}
     >
-      <span>{actor.fullname}</span>
+      {/* фото */}
+      <Box sx={{ maxWidth: 240 }}>
+        <Avatar
+          src={actor.image}
+          variant='rounded'
+          sx={{ width: 240, height: 320, fontSize: '100px' }}
+        >
+          <AccountCircleIcon sx={{ fontSize: 'inherit', color: 'gray' }} />
+          {/* якщо картинка за посиланням відсутня */}
+        </Avatar>
+      </Box>
 
-      <CloseIcon
-        onClick={handleDelete}
-        fontSize='small'
-        sx={{
-          color: 'gray',
-          width: 18,
-          height: 18,
-          boxSizing: 'content-box',
-          backgroundColor: '#ffffff',
-        }}
-      />
-    </Paper>
+      {/* інфа*/}
+      <Box>
+        <Typography variant='h3'>{actor.fullname}</Typography>
+
+        <Typography variant='body1'>
+          <strong>Birthday:</strong> {actor.birthday}
+        </Typography>
+
+        <Typography variant='body1'>
+          <strong>Nationality:</strong> {actor.nationality}
+        </Typography>
+
+        <Typography variant='h6'>Movies:</Typography>
+        <ul>
+          {actor.movies.map((movie, index) => (
+            <li key={index}> {`${movie}`}</li>
+          ))}
+        </ul>
+      </Box>
+    </Box>
   );
 }
 
