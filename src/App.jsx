@@ -17,6 +17,7 @@ function App () {
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route path='/movies/*' element={<Movies />} />
+          {/* Route визначає що показувати (element) для конкретного URL(path) */}
           <Route path='/actors/*' element={<Actors />} />
           <Route path='/studios/*' element={<Studios />} />
           <Route path='/directors/*' element={<Directors />} />
@@ -32,3 +33,5 @@ function App () {
 }
 
 export default App;
+
+

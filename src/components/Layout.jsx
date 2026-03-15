@@ -6,6 +6,8 @@ import CinemaService from './Service/CinemaService';
 import Footer from './Footer/Footer';
 import NavBar from './Navigation/NavBar';
 
+
+//декілька динамічних понелей 
 export default function Layout () {
   return (
     <div
@@ -30,10 +32,11 @@ export default function Layout () {
           {' '}
           <NavBar />
         </div>
-        <div style={{ flex: 6, border: '1px solid green' }}>
+        <div style={{ flex: 4, border: '1px solid green' }}>
           <Outlet />
+          {/* показує вміст дочірніх маршрутів */}
         </div>
-        <div style={{ flex: 4, border: '1px solid blue' }}>
+        <div style={{ flex: 6, border: '1px solid blue' }}>
           <CinemaService />
         </div>
       </div>

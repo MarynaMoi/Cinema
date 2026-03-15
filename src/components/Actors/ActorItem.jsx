@@ -5,25 +5,24 @@ import {
 } from '../../store/slices/actorsSlices';
 
 import { Paper } from '@mui/material';
+
 import CloseIcon from '@mui/icons-material/Close';
 
 function ActorItem ({ actor }) {
   const dispatch = useDispatch();
 
   const handleDelete = ev => {
-    ev.stopPropagation();
+    console.log('handleDelete', actor.id)
+    ev.preventDefault()
+    // ev.stopPropagation();
     dispatch(deleteActorItemAsync(actor.id));
   };
 
-  const onSelectActor = ev => {
-    ev.stopPropagation();
-    dispatch(selectActor(actor));
-  };
+
 
   return (
     <Paper
       elevation={1}
-      onClick={onSelectActor}
       sx={{
         m: '10px',
         display: 'flex',
