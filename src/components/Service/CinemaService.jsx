@@ -9,6 +9,7 @@ export default function CinemaService() {
       <Routes>
           <Route path="/actors/new" element={<ActorsForm />} />
           <Route path="/actors/:id" element={<ActorsForm />} />
+          <Route path="/actors/:id/edit" element={<ActorsForm />} />
       </Routes>
     
     </>

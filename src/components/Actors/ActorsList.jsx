@@ -13,12 +13,6 @@ import {
 } from '../../store/slices/actorsSlices';
 
 export default function ActorsList ({ actors }) {
-  const dispatch = useDispatch();
-  const handleDelete = id=> {
-    console.log('handleDelete', id)
-
-    dispatch(deleteActorItemAsync(id));
-  };
 
   return (
     <ul style={{ listStyle: 'none', padding: 0 }}>
@@ -28,78 +22,10 @@ export default function ActorsList ({ actors }) {
             to={`/actors/${actor.id}`}
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
-            <Paper
-              sx={{
-                m: '10px',
-                display: 'flex',
-                alignItems: 'center',
-                cursor: 'pointer',
-                '&:hover': {
-                  boxShadow: 4,
-                  transform: 'translateY(-2px)',
-                },
-              }}
-            >
-              <ActorItem actor={actor} />
-              {/* {actor.fullname || 'Unnamed actor'} */}
-              <CloseIcon
-                onClick={() => handleDelete(actor.id)}
-                fontSize='small'
-                sx={{
-                  color: 'gray',
-                  width: 18,
-                  height: 18,
-                  boxSizing: 'content-box',
-                  backgroundColor: '#ffffff',
-                }}
-              />
-            </Paper>
+            <ActorItem actor={actor} />
           </Link>
         </li>
       ))}
     </ul>
   );
 }
-
-// export default function ActorsList ({ actors, onSelectActor }) {
-//   const dispatch = useDispatch();
-//   const handleDelete = id=> {
-//     console.log('handleDelete', id)
-
-//     dispatch(deleteActorItemAsync(id));
-//   };
-//   return (
-//     <ul>
-//       {actors.map(item => (
-//         <li key={item.id}>
-//           <Paper
-//             onClick={() => onSelectActor(item.id)}
-//             sx={{
-//               m: '10px',
-//               display: 'flex',
-//               alignItems: 'center',
-//               cursor: 'pointer',
-//               '&:hover': {
-//                 boxShadow: 4,
-//                 transform: 'translateY(-2px)',
-//               },
-//             }}
-//           >
-//             {item.fullname || 'Unnamed actor'}
-//             <CloseIcon
-//               onClick={() => handleDelete(item.id)}
-//               fontSize='small'
-//               sx={{
-//                 color: 'gray',
-//                 width: 18,
-//                 height: 18,
-//                 boxSizing: 'content-box',
-//                 backgroundColor: '#ffffff',
-//               }}
-//             />
-//           </Paper>
-//         </li>
-//       ))}
-//     </ul>
-//   );
-// }
