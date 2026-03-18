@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Box, Typography, Avatar } from '@mui/material';
+import { Box, Typography, Avatar, Paper } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function ActorItem () {
@@ -12,8 +12,9 @@ function ActorItem () {
     return <Typography>Loading actor data...</Typography>;
   }
   return (
-    <Box
+    <Paper
       sx={{
+        m: '16px',
         p: 3,
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
@@ -25,33 +26,51 @@ function ActorItem () {
         <Avatar
           src={actor.image}
           variant='rounded'
-          sx={{ width: 240, height: 320, fontSize: '100px' }}
+          sx={{
+            width: '100%',
+            maxWidth: 240,
+            height: 'auto',
+            aspectRatio: '3 / 4', // Співвідношення сторін
+            fontSize: '100px',
+          }}
         >
           <AccountCircleIcon sx={{ fontSize: 'inherit', color: 'gray' }} />
-          {/* якщо картинка за посиланням відсутня */}
+          {/* якщо картинка за посиланням відсутня аватар підсовує іконку*/}
         </Avatar>
       </Box>
 
-      {/* інфа*/}
       <Box>
         <Typography variant='h3'>{actor.fullname}</Typography>
 
-        <Typography variant='body1'>
-          <strong>Birthday:</strong> {actor.birthday}
+        <Typography>
+          <Box component='span' sx={{ fontWeight: 'bold', mr: 1 }}>
+            Birthday:
+          </Box>
+          {actor.birthday}
         </Typography>
 
-        <Typography variant='body1'>
-          <strong>Nationality:</strong> {actor.nationality}
+        <Typography>
+          <Box component='span' sx={{ fontWeight: 600, mr: 1 }}>
+            Nationality:
+          </Box>
+          {actor.nationality}
         </Typography>
 
-        <Typography variant='h6'>Movies:</Typography>
-        <ul>
+        <Typography variant='h6' sx={{ fontWeight: 600, mt: '8px' }}>
+          Movies:
+        </Typography>
+        <ul
+          style={{
+            paddingLeft: '20px',
+            margin: 0,
+          }}
+        >
           {actor.movies.map((movie, index) => (
             <li key={index}> {`${movie}`}</li>
           ))}
         </ul>
       </Box>
-    </Box>
+    </Paper>
   );
 }
 

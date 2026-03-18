@@ -6,6 +6,8 @@ import { Button, TextField, Stack, Box, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddIcon from '@mui/icons-material/Add';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save'; // за бажанням для Save
 import {
   addActorItemAsync,
   updateActorItemAsync,
@@ -52,14 +54,13 @@ function ActorsForm () {
         as={TextField}
         name={name}
         placeholder={placeholder}
-        variant='outlined'
         size='small'
         fullWidth
         sx={{
           '& legend': { display: 'none' },
           '& .MuiOutlinedInput-input': {
             fontSize: '14px',
-            height: '12px',
+            pr: '24px'
           },
         }}
       />
@@ -77,13 +78,11 @@ function ActorsForm () {
           }}
         >
           <CloseIcon
-            fontSize='small'
             sx={{
               color: 'gray',
-              width: 18,
-              height: 18,
-              boxSizing: 'content-box',
-              backgroundColor: '#ffffff',
+              // background: 'gray',
+              width: 20,
+              height: 20,
             }}
           />
         </Box>
@@ -92,13 +91,14 @@ function ActorsForm () {
   );
 
   const renderForm = ({ values, setFieldValue }) => {
+    //setFieldValue - ф-я форміка по зміні стану
     return (
       <Form>
         {renderInput('fullname', 'Full Name', values, setFieldValue)}
-        {renderInput('birthday', 'birthday', values, setFieldValue)}
-        {renderInput('nationality', 'nationality', values, setFieldValue)}
+        {renderInput('birthday', 'Birthday', values, setFieldValue)}
+        {renderInput('nationality', 'Nationality', values, setFieldValue)}
         {renderInput('image', 'image URL', values, setFieldValue)}
-        Movies List
+        <Box sx={{ m: 2 }}>Movies List:</Box>
         <FieldArray name='movies'>
           {({ push, remove }) => (
             <Box>
@@ -137,7 +137,14 @@ function ActorsForm () {
                 startIcon={<AddIcon />}
                 size='small'
                 onClick={() => push('')}
-                sx={{ textTransform: 'none', fontSize: '12px', m: 2 }}
+                variant='outlined'
+                sx={{
+                  display: 'inline-flex',
+                  fontSize: '12px',
+                  ml: 2,
+                  maxWidth: '120px',
+                  whiteSpace: 'nowrap',
+                }}
               >
                 Add movie
               </Button>
@@ -154,9 +161,25 @@ function ActorsForm () {
           }}
         >
           <Button
+            type='button'
+            variant='contained'
+            onClick={handleReturn}
+            startIcon={<ArrowBackIcon />}
+            sx={{
+              display: 'inline-flex',
+            }}
+          >
+            Return
+          </Button>
+
+          <Button
             type='submit'
             variant='contained'
-            sx={{ textTransform: 'none' }}
+            color='success' // робить кнопку зеленою
+            startIcon={<SaveIcon />}
+            sx={{
+              display: 'inline-flex',
+            }}
           >
             Save
           </Button>
@@ -165,20 +188,16 @@ function ActorsForm () {
             <Button
               type='button'
               variant='outlined'
+              color='error' // робить кнопку червоною
               onClick={handleDelete}
-              sx={{ textTransform: 'none' }}
+              startIcon={<DeleteForeverIcon />}
+              sx={{
+                display: 'inline-flex',
+              }}
             >
-              Reset
+              Delete
             </Button>
           )}
-          <Button
-            type='button'
-            onClick={handleReturn}
-            variant='contained'
-            sx={{ textTransform: 'none' }}
-          >
-            Return
-          </Button>
         </Stack>
       </Form>
     );

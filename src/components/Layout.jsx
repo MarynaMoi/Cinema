@@ -1,74 +1,51 @@
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+
 import { Outlet } from 'react-router-dom';
 import Header from './Header/Header';
 import CinemaService from './Service/CinemaService';
 import Footer from './Footer/Footer';
 import NavBar from './Navigation/NavBar';
 
-
-//декілька динамічних понелей 
-export default function Layout () {
+export default function Layout ({ toggleTheme, mode }) {
   return (
-    <div
-      style={{
-        width: '100vw',
-        minHeight: '100vh',
+    <Box
+      sx={{
         display: 'flex',
         flexDirection: 'column',
+        height: '100vh', // весь екран
+        overflow: 'hidden', // заборона скролу ( тому хедер і футер стоять на місці.
+        // середня частина також була б на місці,
+        // але overflowY: 'auto' все таки дозволяє рухатись)
       }}
     >
-      <Header />
+      <Header toggleTheme={toggleTheme} mode={mode} />
 
-      <div
-        style={{
+      {/*  скролиться тільки серединка */}
+      <Box
+        component='main'
+        sx={{
           display: 'flex',
+          flexGrow: 1, // займає весь простір між Header і Footer
+          overflow: 'hidden',
           width: '100%',
-          flexGrow: 1, // займає весь доступний простір між Header і Footer
-          minHeight: 0, // потрібне для flex-контейнерів, щоб scroll працював
         }}
       >
-        <div style={{ flex: 2, border: '1px solid red' }}>
-          {' '}
+        <Box sx={{ flex: 2, overflowY: 'auto' }}>
+          {/* overflowY: 'auto' - скрол тільки цієї колонки*/}
           <NavBar />
-        </div>
-        <div style={{ flex: 4, border: '1px solid green' }}>
+        </Box>
+
+        <Box sx={{ flex: 4, overflowY: 'auto', p: 2, maxWidth: '600px' }}>
           <Outlet />
-          {/* показує вміст дочірніх маршрутів */}
-        </div>
-        <div style={{ flex: 6, border: '1px solid blue' }}>
+          {/* показує вміст дочірніх маршрутів (акторс, муві)*/}
+        </Box>
+
+        <Box sx={{ flex: 6, overflowY: 'auto' }}>
           <CinemaService />
-        </div>
-      </div>
+        </Box>
+      </Box>
 
       <Footer />
-    </div>
+    </Box>
   );
 }
-
-// export default function Layout () {
-//   return (
-//     <Box>
-//       <Grid container direction='column'>
-//         {' '}
-//         <Grid item lg={12} md={12} xl={12} sm={12} xs={12}>
-//           <Header />
-//         </Grid>
-//         <Grid item container>
-//           <Grid item lg={2} md={2} xl={2} sm={2} xs={2}>
-//             <NavBar />
-//           </Grid>
-//           <Grid item lg={6} md={6} xl={6} sm={6} xs={6}>
-//             <Outlet />
-//           </Grid>
-//           <Grid item lg={4} md={4} xl={4} sm={4} xs={4}>
-//             <CinemaService />
-//           </Grid>
-//         </Grid>
-//         <Grid item lg={12} md={12} xl={12} sm={12} xs={12}>
-//           <Footer />
-//         </Grid>
-//       </Grid>
-//     </Box>
-//   );
-// }

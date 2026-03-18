@@ -1,19 +1,21 @@
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 
-import ActorsForm from "../Actors/ActorsForm";
+import ActorsForm from '../Actors/ActorsForm';
 
-import ActorsItem from "../Actors/ActorItem";
+import ActorsItem from '../Actors/ActorItem';
+import { Typography } from '@mui/material';
 
-export default function CinemaService() {
+export default function CinemaService () {
   return (
     <>
-      <h2>CinemaService</h2>
+      <Typography variant='h4' sx={{ mt: '16px', textAlign: 'center' }}>
+        Cinema Service
+      </Typography>
       <Routes>
-          <Route path="/actors/new" element={<ActorsForm />} />
-          <Route path="/actors/:id" element={<ActorsItem />} />
-          <Route path="/actors/:id/edit" element={<ActorsForm />} />
+        <Route path='/actors/new' element={<ActorsForm />} />
+        <Route path='/actors/:id' element={<ActorsItem />} />
+        <Route path='/actors/:id/edit' element={<ActorsForm />} />
       </Routes>
-    
     </>
   );
 }

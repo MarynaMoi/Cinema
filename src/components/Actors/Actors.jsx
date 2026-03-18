@@ -21,10 +21,8 @@ export default function Actors () {
 
   return (
     <Stack spacing={2}>
-      <Link to='/actors/new'>
-        <Button variant='contained' sx={{ m: 2 }}>
-          Add actor
-        </Button>
+      <Link to='/actors/new' style={{ textDecoration: 'none' }}>
+        <Button variant='greenBtn'>Add actor</Button>
       </Link>
       {/* Link не визначає, що показати на новій стр, він лише змінює URL(to), для статичних посилань */}
       {/* Route визначає що показувати (element) для конкретного URL(path) */}
