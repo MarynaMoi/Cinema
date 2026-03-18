@@ -10,3 +10,16 @@ export const createNewActor = () => {
     image: '',
   };
 };
+
+export const moviesState = [];
+export const MOVIE_SLICE_NAME = 'movies';
+export const createNewMovie = () => {
+  return {
+    id: null,
+    title: '',
+    directors: [],
+    actors: [],
+    studios: [],
+    poster: '',
+  };
+};

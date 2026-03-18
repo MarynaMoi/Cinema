@@ -1,9 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
+import { Typography } from '@mui/material';
+
 
 import ActorsForm from '../Actors/ActorsForm';
-
 import ActorsItem from '../Actors/ActorItem';
-import { Typography } from '@mui/material';
+import MoviesForm from '../Movies/MoviesForm';
+import MoviesItem from '../Movies/MovieItem';
+
+
 
 export default function CinemaService () {
   return (
@@ -15,6 +19,9 @@ export default function CinemaService () {
         <Route path='/actors/new' element={<ActorsForm />} />
         <Route path='/actors/:id' element={<ActorsItem />} />
         <Route path='/actors/:id/edit' element={<ActorsForm />} />
+        <Route path='/movies/new' element={<MoviesForm />} />
+        <Route path='/movies/:id' element={<MoviesItem />} />
+        <Route path='/movies/:id/edit' element={<MoviesForm />} />
       </Routes>
     </>
   );

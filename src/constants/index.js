@@ -16,7 +16,7 @@ export const posters = [
   },
   {
     id: 4,
-    url: "https://image.tmdb.org/t/p/w500/c414cDeQ9b6qLPLeKmiJuLDUREJ.jpg",
+    url: "https://upload.wikimedia.org/wikipedia/en/e/e7/Jurassic_Park_poster.jpg",
     alt: "Jurassic Park movie poster"
   },
   {

@@ -124,7 +124,7 @@
         "Warner Bros.",
         "Legendary Pictures"
       ],
-      "poster": "https://upload.wikimedia.org/wikipedia/en/7/7f/Inception_ver3.jpg"
+      "poster": "https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg"
     },
     {
       "id": "2",
@@ -140,7 +140,7 @@
         "20th Century Fox",
         "Paramount Pictures"
       ],
-      "poster": "https://upload.wikimedia.org/wikipedia/en/2/22/Titanic_poster.jpg"
+      "poster": "https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg"
     },
     {
       "id": "3",
@@ -156,7 +156,7 @@
       "studios": [
         "Miramax Films"
       ],
-      "poster": "https://upload.wikimedia.org/wikipedia/en/8/82/Pulp_Fiction_cover.jpg"
+      "poster": "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg"
     },
     {
       "id": "4",
@@ -189,6 +189,25 @@
         "20th Century Fox"
       ],
       "poster": "https://upload.wikimedia.org/wikipedia/en/f/fc/Fight_Club_poster.jpg"
+    },
+    {
+      "id": "JPUUCwe9lAYxRrGHvRM8N",
+      "title": "ааа",
+      "directors": [
+        "пп",
+        ""
+      ],
+      "actors": [
+        "ввввввв",
+        "уууууууууууу",
+        "мммммммммммммммм",
+        ""
+      ],
+      "studios": [
+        "студ",
+        "студ2"
+      ],
+      "poster": ""
     }
   ],
   "studios": [
