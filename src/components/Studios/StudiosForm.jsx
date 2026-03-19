@@ -9,39 +9,38 @@ import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save'; // за бажанням для Save
 import {
-  addActorItemAsync,
-  updateActorItemAsync,
-  deleteActorItemAsync,
-} from './../../store/slices/actorsSlices';
-import { createNewActor } from '../../model/initialState';
+  addStudioItemAsync,
+  updateStudioItemAsync,
+  deleteStudioItemAsync,
+} from './../../store/slices/studiosSlices';
+import { createNewStudio } from '../../model/initialState';
 
-
-export default function ActorsForm () {
+export default function StudiosForm () {
   const dispatch = useDispatch();
   const { id } = useParams(); // отримую id з URL
   const navigate = useNavigate();
-  const actors = useSelector(state => state.actorsList.actors);
+  const studios = useSelector(state => state.studiosList.studios);
 
-  const actorItem = id
-    ? actors.find(a => a.id === id) ?? createNewActor()
-    : createNewActor();
+  const studioItem = id
+    ? studios.find(a => a.id === id) ?? createNewStudio()
+    : createNewStudio();
   console.log(id);
 
-  const onSaveActor = (values, { resetForm }) => {
+  const onSaveStudio = (values, { resetForm }) => {
     console.log(values);
     if (!values.id) {
-      const newActor = { ...values, id: nanoid() };
-      dispatch(addActorItemAsync(newActor));
+      const newStudio = { ...values, id: nanoid() };
+      dispatch(addStudioItemAsync(newStudio));
       resetForm();
     } else {
-      dispatch(updateActorItemAsync(values));
+      dispatch(updateStudioItemAsync(values));
     }
   };
 
   const handleDelete = () => {
-    dispatch(deleteActorItemAsync(actorItem.id));
-    if (!actorItem) {
-      return <Typography>Loading actor data...</Typography>;
+    dispatch(deleteStudioItemAsync(studioItem.id));
+    if (!studioItem) {
+      return <Typography>Loading Studio data...</Typography>;
     }
   };
   const handleReturn = () => {
@@ -61,7 +60,7 @@ export default function ActorsForm () {
           '& legend': { display: 'none' },
           '& .MuiOutlinedInput-input': {
             fontSize: '14px',
-            pr: '24px'
+            pr: '24px',
           },
         }}
       />
@@ -91,20 +90,15 @@ export default function ActorsForm () {
     </Box>
   );
 
-  const renderForm = ({ values, setFieldValue }) => {
-    //setFieldValue - ф-я форміка по зміні стану
+  const renderFieldArray = (name, placeholder, values, setFieldValue) => {
     return (
-      <Form>
-        {renderInput('fullname', 'Full Name', values, setFieldValue)}
-        {renderInput('birthday', 'Birthday', values, setFieldValue)}
-        {renderInput('nationality', 'Nationality', values, setFieldValue)}
-        {renderInput('image', 'image URL', values, setFieldValue)}
-        <Box sx={{ m: 2 }}>Movies List:</Box>
-        <FieldArray name='movies'>
+      // const a=()=>() or const a=()=>{return()}
+      <Box position='relative' sx={{ m: 2 }}>
+        <FieldArray name={name}>
           {({ push, remove }) => (
             <Box>
-              {values.movies &&
-                values.movies.map((_, index) => (
+              {values[name] &&
+                values[name].map((_, index) => (
                   <Box
                     key={index}
                     position='relative'
@@ -112,8 +106,8 @@ export default function ActorsForm () {
                   >
                     <Field
                       as={TextField}
-                      name={`movies.${index}`}
-                      placeholder='Movie title'
+                      name={`${name}.${index}`}
+                      placeholder={placeholder}
                       variant='outlined'
                       size='small'
                       fullWidth
@@ -143,15 +137,28 @@ export default function ActorsForm () {
                   display: 'inline-flex',
                   fontSize: '12px',
                   ml: 2,
-                  maxWidth: '120px',
+                  maxWidth: '200px',
                   whiteSpace: 'nowrap',
                 }}
               >
-                Add movie
+                Add {placeholder}
               </Button>
             </Box>
           )}
         </FieldArray>
+      </Box>
+    );
+  };
+  const renderForm = ({ values, setFieldValue }) => {
+    //setFieldValue - ф-я форміка по зміні стану
+    return (
+      <Form>
+        {renderInput('title', 'title', values, setFieldValue)}
+        {renderInput('location', 'location', values, setFieldValue)}
+        {renderInput('foundationYear', 'foundationYear', values, setFieldValue)}
+        {renderFieldArray('movies', 'Movies List:', values, setFieldValue)}
+
+
         <Stack
           direction='row'
           spacing={2}
@@ -185,7 +192,7 @@ export default function ActorsForm () {
             Save
           </Button>
 
-          {actorItem.id !== null && (
+          {studioItem.id !== null && (
             <Button
               type='button'
               variant='outlined'
@@ -205,7 +212,7 @@ export default function ActorsForm () {
   };
 
   return (
-    <Formik enableReinitialize initialValues={actorItem} onSubmit={onSaveActor}>
+    <Formik enableReinitialize initialValues={studioItem} onSubmit={onSaveStudio}>
       {renderForm}
     </Formik>
   );

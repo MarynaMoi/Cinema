@@ -3,41 +3,41 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Stack, Button } from '@mui/material';
 
-import { getDirectorsAsync } from './../../store/slices/directorsSlices' 
-import DirectorsList from '../Directors/DirectorsList';
+import { getStudiosAsync } from './../../store/slices/studiosSlices';
+import StudiosList from '../Studios/StudiosList';
 
-export default function Directors () {
+export default function Studios () {
   const dispatch = useDispatch();
-  const directors = useSelector(state => state.directorsList.directors);
+  const studios = useSelector(state => state.studiosList.studios);
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getDirectorsAsync());
+    dispatch(getStudiosAsync());
   }, []);
 
-  const onSelectDirector = id => {
-    navigate(`/directors/${id}`);
+  const onSelectStudio = id => {
+    navigate(`/Studios/${id}`);
   };
 
   return (
     <Stack spacing={2}>
-      <Link to='/directors/new' style={{ textDecoration: 'none' }}>
-        <Button variant='greenBtn'>Add Director</Button>
+      <Link to='/Studios/new' style={{ textDecoration: 'none' }}>
+        <Button variant='greenBtn'>Add Studio</Button>
       </Link>
       {/* Link не визначає, що показати на новій стр, він лише змінює URL(to), для статичних посилань */}
       {/* Route визначає що показувати (element) для конкретного URL(path) */}
       {/* Лінк та Роут не обов'язково повинні бути в одному компоненті */}
-      <DirectorsList
-        directors={directors}
-        onSelectDirector={onSelectDirector}
+      <StudiosList
+        studios={studios}
+        onSelectStudio={onSelectStudio}
         // navigate змінює url сторінки, використовують (можна у функ, обробниках), коли шлях залежить від даних
       />
     </Stack>
     //       <Routes>
-    //         <Route path=':id' element={<DirectorItem />} />
-    //         {/* <Route index element={<DirectorsList />} /> */}
-    //         {/* <Route path='new' element={<DirectorsForm />} /> */}
-    //         <Route path='new' element={<Navigate to='/Directors/new/:id' />} />
+    //         <Route path=':id' element={<StudioItem />} />
+    //         {/* <Route index element={<StudiosList />} /> */}
+    //         {/* <Route path='new' element={<StudiosForm />} /> */}
+    //         <Route path='new' element={<Navigate to='/Studios/new/:id' />} />
     //         {/* переадресація*/}
 
     //       </Routes>

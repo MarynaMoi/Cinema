@@ -10,7 +10,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import Movies from './components/Movies/Movies';
 import Actors from './components/Actors/Actors';
-import Studios from '../src/components/Studios';
+import Studios from './components/Studios/Studios';
 import Directors from './components/Directors/Directors';
 import HomePage from './components/HomePage/HomePage';
 import Layout from './components/Layout';
@@ -83,6 +83,7 @@ function App () {
             <Route path='/movies/*' element={<Movies />} />
             {/* Route визначає що показувати (element) для конкретного URL(path) */}
             <Route path='/actors/*' element={<Actors />} />
+            <Route path='/studios/*' element={<Studios />} />
             <Route path='/directors/*' element={<Directors />} />
             <Route index element={<HomePage />} />
             {/* індексний роут (пов'язано з Layout)*/}

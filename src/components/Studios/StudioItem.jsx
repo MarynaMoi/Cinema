@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import { Box, Typography, Avatar, Paper } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-export default function ActorItem () {
+export default function studioItem () {
   const { id } = useParams(); //отримую id з URL
-  const actors = useSelector(state => state.actorsList.actors);
+  const studios = useSelector(state => state.studiosList.studios);
 
-  const actor = actors.find(item => String(item.id) === String(id));
-  if (!actor) {
-    return <Typography>Loading actor data...</Typography>;
+  const studio = studios.find(item => String(item.id) === String(id));
+  if (!studio) {
+    return <Typography>Loading studio data...</Typography>;
   }
   return (
     <Paper
@@ -24,7 +24,7 @@ export default function ActorItem () {
       {/* фото */}
       <Box sx={{ maxWidth: 240 }}>
         <Avatar
-          src={actor.image}
+          src={studio.poster}
           variant='rounded'
           sx={{
             width: '100%',
@@ -40,20 +40,18 @@ export default function ActorItem () {
       </Box>
 
       <Box>
-        <Typography variant='h3'>{actor.fullname}</Typography>
-
+        <Typography variant='h3'>{studio.title}</Typography>
         <Typography>
           <Box component='span' sx={{ fontWeight: 'bold', mr: 1 }}>
-            Birthday:
+            location:
           </Box>
-          {actor.birthday}
+          {studio.location}
         </Typography>
-
         <Typography>
-          <Box component='span' sx={{ fontWeight: 600, mr: 1 }}>
-            Nationality:
+          <Box component='span' sx={{ fontWeight: 'bold', mr: 1 }}>
+            Foundation Year:
           </Box>
-          {actor.nationality}
+          {studio.foundationYear}
         </Typography>
 
         <Typography variant='h6' sx={{ fontWeight: 600, mt: '8px' }}>
@@ -65,13 +63,11 @@ export default function ActorItem () {
             margin: 0,
           }}
         >
-          {actor.movies.map((movie, index) => (
-            <li key={index}> {`${movie}`}</li>
+          {studio.movies.map((movies, index) => (
+            <li key={index}> {`${movies}`}</li>
           ))}
         </ul>
       </Box>
     </Paper>
   );
 }
-
-
