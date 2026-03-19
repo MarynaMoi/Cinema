@@ -1,20 +1,31 @@
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Paper } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 //------------------------------------------------
-import { deleteDirectorItemAsync } from '../../store/slices/directorsSlices';
+import {
+  deleteDirectorItemAsync,
+  getDirectorsAsync,
+} from '../../store/slices/directorsSlices';
 //------------------------------------------------
 
-export default function DirectorsList ({ directors }) {
+export default function DirectorsList () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const directors = useSelector(state => state.directorsList.directors);
+
+  useEffect(() => {
+    dispatch(getDirectorsAsync());
+  }, []);
+
   const handleDelete = id => {
     dispatch(deleteDirectorItemAsync(id));
   };
+  
   const handleEdit = (ev, id) => {
-    ev.preventDefault(); 
+    ev.preventDefault();
     ev.stopPropagation();
     navigate(`/directors/${id}/edit`);
   };
@@ -27,7 +38,6 @@ export default function DirectorsList ({ directors }) {
             to={`/directors/${director.id}`}
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
-            
             <Paper
               sx={{
                 m: '10px',
@@ -41,7 +51,6 @@ export default function DirectorsList ({ directors }) {
               }}
             >
               <span style={{ flexGrow: 1 }}>
-         
                 {director.fullname || 'Unnamed Director'}
               </span>
               <DeleteForeverIcon onClick={() => handleDelete(director.id)} />

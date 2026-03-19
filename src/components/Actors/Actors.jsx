@@ -1,45 +1,21 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Stack, Button } from '@mui/material';
 
 import { getActorsAsync } from './../../store/slices/actorsSlices';
 import ActorsList from '../Actors/ActorsList';
 
 export default function Actors () {
-  const dispatch = useDispatch();
-  const actors = useSelector(state => state.actorsList.actors);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(getActorsAsync());
-  }, []);
-
-  const onSelectActor = id => {
-    navigate(`/actors/${id}`);
-  };
-
   return (
     <Stack spacing={2}>
       <Link to='/actors/new' style={{ textDecoration: 'none' }}>
         <Button variant='greenBtn'>Add actor</Button>
       </Link>
-      {/* Link не визначає, що показати на новій стр, він лише змінює URL(to), для статичних посилань */}
+      {/* Link змінює URL(to) */}
       {/* Route визначає що показувати (element) для конкретного URL(path) */}
-      {/* Лінк та Роут не обов'язково повинні бути в одному компоненті */}
-      <ActorsList
-        actors={actors}
-        onSelectActor={onSelectActor}
-        // navigate змінює url сторінки, використовують (можна у функ, обробниках), коли шлях залежить від даних
-      />
+      <ActorsList  />
     </Stack>
-    //       <Routes>
-    //         <Route path=':id' element={<ActorItem />} />
-    //         {/* <Route index element={<ActorsList />} /> */}
-    //         {/* <Route path='new' element={<ActorsForm />} /> */}
-    //         <Route path='new' element={<Navigate to='/actors/new/:id' />} />
-    //         {/* переадресація*/}
-
-    //       </Routes>
   );
 }
+

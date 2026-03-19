@@ -1,15 +1,25 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Paper } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 //------------------------------------------------
-import { deleteStudioItemAsync } from '../../store/slices/studiosSlices';
+import {
+  deleteStudioItemAsync,
+  getStudiosAsync,
+} from '../../store/slices/studiosSlices';
 //------------------------------------------------
 
-export default function studiosList ({ studios }) {
+export default function studiosList () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const studios = useSelector(state => state.studiosList.studios);
+
+  useEffect(() => {
+    dispatch(getStudiosAsync());
+  }, []);
+  
   const handleDelete = id => {
     dispatch(deleteStudioItemAsync(id));
   };

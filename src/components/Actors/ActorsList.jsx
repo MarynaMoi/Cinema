@@ -1,15 +1,24 @@
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Paper } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useSelector, useDispatch } from 'react-redux';
 //------------------------------------------------
-import { deleteActorItemAsync } from '../../store/slices/actorsSlices';
+import { deleteActorItemAsync, getActorsAsync } from '../../store/slices/actorsSlices';
 //------------------------------------------------
 
-export default function ActorsList ({ actors }) {
+export default function ActorsList () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const actors = useSelector(state => state.actorsList.actors);
+
+  useEffect(() => {
+    dispatch(getActorsAsync());
+  }, []);
+
+
   const handleDelete = id => {
     console.log('handleDelete', id);
     dispatch(deleteActorItemAsync(id));
@@ -18,7 +27,6 @@ export default function ActorsList ({ actors }) {
     ev.preventDefault(); 
     // ігнор основного Link
     ev.stopPropagation();
-    console.log('handleEdit', id);
     navigate(`/actors/${id}/edit`);
   };
 

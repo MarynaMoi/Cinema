@@ -1,23 +1,32 @@
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Paper } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 //------------------------------------------------
-import { deleteMovieItemAsync } from '../../store/slices/moviesSlices';
+import {
+  deleteMovieItemAsync,
+  getMoviesAsync,
+} from '../../store/slices/moviesSlices';
 //------------------------------------------------
 
-export default function MoviesList ({ movies }) {
+export default function MoviesList () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const movies = useSelector(state => state.moviesList.movies);
+
+  useEffect(() => {
+    dispatch(getMoviesAsync());
+  }, []);
+
   const handleDelete = id => {
     dispatch(deleteMovieItemAsync(id));
   };
+
   const handleEdit = (ev, id) => {
     ev.preventDefault();
-
     ev.stopPropagation();
-
     navigate(`/movies/${id}/edit`);
   };
 
