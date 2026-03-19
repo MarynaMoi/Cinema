@@ -15,7 +15,6 @@ export default function DirectorsList ({ directors }) {
   };
   const handleEdit = (ev, id) => {
     ev.preventDefault(); 
-    // ігнор основного Link
     ev.stopPropagation();
     navigate(`/directors/${id}/edit`);
   };
@@ -42,7 +41,7 @@ export default function DirectorsList ({ directors }) {
               }}
             >
               <span style={{ flexGrow: 1 }}>
-                {/* відштовхує іконки в кінець */}
+         
                 {director.fullname || 'Unnamed Director'}
               </span>
               <DeleteForeverIcon onClick={() => handleDelete(director.id)} />

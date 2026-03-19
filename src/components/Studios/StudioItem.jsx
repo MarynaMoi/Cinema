@@ -4,7 +4,7 @@ import { Box, Typography, Avatar, Paper } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export default function studioItem () {
-  const { id } = useParams(); //отримую id з URL
+  const { id } = useParams();
   const studios = useSelector(state => state.studiosList.studios);
 
   const studio = studios.find(item => String(item.id) === String(id));
@@ -21,7 +21,6 @@ export default function studioItem () {
         gap: 4,
       }}
     >
-      {/* фото */}
       <Box sx={{ maxWidth: 240 }}>
         <Avatar
           src={studio.logo}
@@ -30,12 +29,11 @@ export default function studioItem () {
             width: '100%',
             maxWidth: 240,
             height: 'auto',
-            aspectRatio: '4 / 3', // Співвідношення сторін
+            aspectRatio: '4 / 3',
             fontSize: '100px',
           }}
         >
           <AccountCircleIcon sx={{ fontSize: 'inherit', color: 'gray' }} />
-          {/* якщо картинка за посиланням відсутня аватар підсовує іконку*/}
         </Avatar>
       </Box>
 

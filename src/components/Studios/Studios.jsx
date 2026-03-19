@@ -24,22 +24,7 @@ export default function Studios () {
       <Link to='/studios/new' style={{ textDecoration: 'none' }}>
         <Button variant='greenBtn'>Add Studio</Button>
       </Link>
-      {/* Link не визначає, що показати на новій стр, він лише змінює URL(to), для статичних посилань */}
-      {/* Route визначає що показувати (element) для конкретного URL(path) */}
-      {/* Лінк та Роут не обов'язково повинні бути в одному компоненті */}
-      <StudiosList
-        studios={studios}
-        onSelectStudio={onSelectStudio}
-        // navigate змінює url сторінки, використовують (можна у функ, обробниках), коли шлях залежить від даних
-      />
+      <StudiosList studios={studios} onSelectStudio={onSelectStudio} />
     </Stack>
-    //       <Routes>
-    //         <Route path=':id' element={<StudioItem />} />
-    //         {/* <Route index element={<StudiosList />} /> */}
-    //         {/* <Route path='new' element={<StudiosForm />} /> */}
-    //         <Route path='new' element={<Navigate to='/Studios/new/:id' />} />
-    //         {/* переадресація*/}
-
-    //       </Routes>
   );
 }

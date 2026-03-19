@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Stack, Button } from '@mui/material';
 
-import { getDirectorsAsync } from './../../store/slices/directorsSlices' 
+import { getDirectorsAsync } from './../../store/slices/directorsSlices';
 import DirectorsList from '../Directors/DirectorsList';
 
 export default function Directors () {
@@ -24,22 +24,11 @@ export default function Directors () {
       <Link to='/directors/new' style={{ textDecoration: 'none' }}>
         <Button variant='greenBtn'>Add Director</Button>
       </Link>
-      {/* Link не визначає, що показати на новій стр, він лише змінює URL(to), для статичних посилань */}
-      {/* Route визначає що показувати (element) для конкретного URL(path) */}
-      {/* Лінк та Роут не обов'язково повинні бути в одному компоненті */}
+
       <DirectorsList
         directors={directors}
         onSelectDirector={onSelectDirector}
-        // navigate змінює url сторінки, використовують (можна у функ, обробниках), коли шлях залежить від даних
       />
     </Stack>
-    //       <Routes>
-    //         <Route path=':id' element={<DirectorItem />} />
-    //         {/* <Route index element={<DirectorsList />} /> */}
-    //         {/* <Route path='new' element={<DirectorsForm />} /> */}
-    //         <Route path='new' element={<Navigate to='/Directors/new/:id' />} />
-    //         {/* переадресація*/}
-
-    //       </Routes>
   );
 }

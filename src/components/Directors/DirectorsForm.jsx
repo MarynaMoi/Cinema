@@ -15,10 +15,9 @@ import {
 } from './../../store/slices/directorsSlices';
 import { createNewDirector } from '../../model/initialState';
 
-
 export default function DirectorsForm () {
   const dispatch = useDispatch();
-  const { id } = useParams(); // отримую id з URL
+  const { id } = useParams();
   const navigate = useNavigate();
   const directors = useSelector(state => state.directorsList.directors);
 
@@ -26,9 +25,7 @@ export default function DirectorsForm () {
     ? directors.find(a => a.id === id) ?? createNewDirector()
     : createNewDirector();
 
-
   const onSaveDirector = (values, { resetForm }) => {
-    console.log(values);
     if (!values.id) {
       const newDirector = { ...values, id: nanoid() };
       dispatch(addDirectorItemAsync(newDirector));
@@ -46,7 +43,6 @@ export default function DirectorsForm () {
   };
   const handleReturn = () => {
     navigate('..', { relative: 'path' });
-    // прибирає /(останню частину шляху)
   };
 
   const renderInput = (name, placeholder, values, setFieldValue) => (
@@ -61,7 +57,7 @@ export default function DirectorsForm () {
           '& legend': { display: 'none' },
           '& .MuiOutlinedInput-input': {
             fontSize: '14px',
-            pr: '24px'
+            pr: '24px',
           },
         }}
       />
@@ -81,7 +77,7 @@ export default function DirectorsForm () {
           <CloseIcon
             sx={{
               color: 'gray',
-              // background: 'gray',
+
               width: 20,
               height: 20,
             }}
@@ -92,7 +88,6 @@ export default function DirectorsForm () {
   );
 
   const renderForm = ({ values, setFieldValue }) => {
-    //setFieldValue - ф-я форміка по зміні стану
     return (
       <Form>
         {renderInput('fullname', 'Full Name', values, setFieldValue)}
@@ -176,7 +171,7 @@ export default function DirectorsForm () {
           <Button
             type='submit'
             variant='contained'
-            color='success' // робить кнопку зеленою
+            color='success'
             startIcon={<SaveIcon />}
             sx={{
               display: 'inline-flex',
@@ -189,7 +184,7 @@ export default function DirectorsForm () {
             <Button
               type='button'
               variant='outlined'
-              color='error' // робить кнопку червоною
+              color='error'
               onClick={handleDelete}
               startIcon={<DeleteForeverIcon />}
               sx={{
@@ -205,7 +200,11 @@ export default function DirectorsForm () {
   };
 
   return (
-    <Formik enableReinitialize initialValues={directorItem} onSubmit={onSaveDirector}>
+    <Formik
+      enableReinitialize
+      initialValues={directorItem}
+      onSubmit={onSaveDirector}
+    >
       {renderForm}
     </Formik>
   );

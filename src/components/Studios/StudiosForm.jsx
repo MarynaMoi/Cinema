@@ -17,7 +17,7 @@ import { createNewStudio } from '../../model/initialState';
 
 export default function StudiosForm () {
   const dispatch = useDispatch();
-  const { id } = useParams(); // отримую id з URL
+  const { id } = useParams();
   const navigate = useNavigate();
   const studios = useSelector(state => state.studiosList.studios);
 
@@ -27,7 +27,6 @@ export default function StudiosForm () {
   console.log(id);
 
   const onSaveStudio = (values, { resetForm }) => {
-    console.log(values);
     if (!values.id) {
       const newStudio = { ...values, id: nanoid() };
       dispatch(addStudioItemAsync(newStudio));
@@ -45,7 +44,6 @@ export default function StudiosForm () {
   };
   const handleReturn = () => {
     navigate('..', { relative: 'path' });
-    // прибирає /(останню частину шляху)
   };
 
   const renderInput = (name, placeholder, values, setFieldValue) => (
@@ -80,7 +78,7 @@ export default function StudiosForm () {
           <CloseIcon
             sx={{
               color: 'gray',
-              // background: 'gray',
+
               width: 20,
               height: 20,
             }}
@@ -92,7 +90,6 @@ export default function StudiosForm () {
 
   const renderFieldArray = (name, placeholder, values, setFieldValue) => {
     return (
-      // const a=()=>() or const a=()=>{return()}
       <Box position='relative' sx={{ m: 2 }}>
         <FieldArray name={name}>
           {({ push, remove }) => (
@@ -150,14 +147,12 @@ export default function StudiosForm () {
     );
   };
   const renderForm = ({ values, setFieldValue }) => {
-    //setFieldValue - ф-я форміка по зміні стану
     return (
       <Form>
         {renderInput('title', 'title', values, setFieldValue)}
         {renderInput('location', 'location', values, setFieldValue)}
         {renderInput('foundationYear', 'foundationYear', values, setFieldValue)}
         {renderFieldArray('movies', 'Movies List:', values, setFieldValue)}
-
 
         <Stack
           direction='row'
@@ -183,7 +178,7 @@ export default function StudiosForm () {
           <Button
             type='submit'
             variant='contained'
-            color='success' // робить кнопку зеленою
+            color='success'
             startIcon={<SaveIcon />}
             sx={{
               display: 'inline-flex',
@@ -196,7 +191,7 @@ export default function StudiosForm () {
             <Button
               type='button'
               variant='outlined'
-              color='error' // робить кнопку червоною
+              color='error'
               onClick={handleDelete}
               startIcon={<DeleteForeverIcon />}
               sx={{
@@ -212,7 +207,11 @@ export default function StudiosForm () {
   };
 
   return (
-    <Formik enableReinitialize initialValues={studioItem} onSubmit={onSaveStudio}>
+    <Formik
+      enableReinitialize
+      initialValues={studioItem}
+      onSubmit={onSaveStudio}
+    >
       {renderForm}
     </Formik>
   );

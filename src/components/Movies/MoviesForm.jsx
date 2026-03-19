@@ -17,7 +17,7 @@ import { createNewMovie } from '../../model/initialState';
 
 export default function MoviesForm () {
   const dispatch = useDispatch();
-  const { id } = useParams(); // отримую id з URL
+  const { id } = useParams();
   const navigate = useNavigate();
   const movies = useSelector(state => state.moviesList.movies);
 
@@ -27,7 +27,6 @@ export default function MoviesForm () {
   console.log(id);
 
   const onSaveMovie = (values, { resetForm }) => {
-    console.log(values);
     if (!values.id) {
       const newMovie = { ...values, id: nanoid() };
       dispatch(addMovieItemAsync(newMovie));
@@ -45,7 +44,6 @@ export default function MoviesForm () {
   };
   const handleReturn = () => {
     navigate('..', { relative: 'path' });
-    // прибирає /(останню частину шляху)
   };
 
   const renderInput = (name, placeholder, values, setFieldValue) => (
@@ -80,7 +78,7 @@ export default function MoviesForm () {
           <CloseIcon
             sx={{
               color: 'gray',
-              // background: 'gray',
+
               width: 20,
               height: 20,
             }}
@@ -92,7 +90,6 @@ export default function MoviesForm () {
 
   const renderFieldArray = (name, placeholder, values, setFieldValue) => {
     return (
-      // const a=()=>() or const a=()=>{return()}
       <Box position='relative' sx={{ m: 2 }}>
         <FieldArray name={name}>
           {({ push, remove }) => (
@@ -150,12 +147,16 @@ export default function MoviesForm () {
     );
   };
   const renderForm = ({ values, setFieldValue }) => {
-    //setFieldValue - ф-я форміка по зміні стану
     return (
       <Form>
         {renderInput('title', 'title', values, setFieldValue)}
         {renderFieldArray('actors', 'Actors List:', values, setFieldValue)}
-        {renderFieldArray('directors', 'Directors List:', values, setFieldValue)}
+        {renderFieldArray(
+          'directors',
+          'Directors List:',
+          values,
+          setFieldValue
+        )}
         {renderFieldArray('studios', 'Studios List:', values, setFieldValue)}
 
         <Stack
@@ -182,7 +183,7 @@ export default function MoviesForm () {
           <Button
             type='submit'
             variant='contained'
-            color='success' // робить кнопку зеленою
+            color='success'
             startIcon={<SaveIcon />}
             sx={{
               display: 'inline-flex',
@@ -195,7 +196,7 @@ export default function MoviesForm () {
             <Button
               type='button'
               variant='outlined'
-              color='error' // робить кнопку червоною
+              color='error'
               onClick={handleDelete}
               startIcon={<DeleteForeverIcon />}
               sx={{

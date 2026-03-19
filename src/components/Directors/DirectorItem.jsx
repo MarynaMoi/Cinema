@@ -4,7 +4,7 @@ import { Box, Typography, Avatar, Paper } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export default function DirectorItem () {
-  const { id } = useParams(); //отримую id з URL
+  const { id } = useParams();
   const directors = useSelector(state => state.directorsList.directors);
 
   const director = directors.find(item => String(item.id) === String(id));
@@ -21,7 +21,6 @@ export default function DirectorItem () {
         gap: 4,
       }}
     >
-      {/* фото */}
       <Box sx={{ maxWidth: 240 }}>
         <Avatar
           src={director.image}
@@ -30,12 +29,11 @@ export default function DirectorItem () {
             width: '100%',
             maxWidth: 240,
             height: 'auto',
-            aspectRatio: '3 / 4', // Співвідношення сторін
+            aspectRatio: '3 / 4',
             fontSize: '100px',
           }}
         >
           <AccountCircleIcon sx={{ fontSize: 'inherit', color: 'gray' }} />
-          {/* якщо картинка за посиланням відсутня аватар підсовує іконку*/}
         </Avatar>
       </Box>
 
@@ -73,5 +71,3 @@ export default function DirectorItem () {
     </Paper>
   );
 }
-
-

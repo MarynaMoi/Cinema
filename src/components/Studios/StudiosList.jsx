@@ -11,14 +11,11 @@ export default function studiosList ({ studios }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleDelete = id => {
-    console.log('handleDelete', id);
     dispatch(deleteStudioItemAsync(id));
   };
   const handleEdit = (ev, id) => {
-    ev.preventDefault(); 
-    // ігнор основного Link
+    ev.preventDefault();
     ev.stopPropagation();
-    console.log('handleEdit', id);
     navigate(`/studios/${id}/edit`);
   };
 
@@ -43,7 +40,6 @@ export default function studiosList ({ studios }) {
               }}
             >
               <span style={{ flexGrow: 1 }}>
-                {/* відштовхує іконки в кінець */}
                 {studio.title || 'Unnamed studio'}
               </span>
               <DeleteForeverIcon onClick={() => handleDelete(studio.id)} />

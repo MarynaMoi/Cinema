@@ -11,14 +11,13 @@ export default function MoviesList ({ movies }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleDelete = id => {
-    console.log('handleDelete', id);
     dispatch(deleteMovieItemAsync(id));
   };
   const handleEdit = (ev, id) => {
-    ev.preventDefault(); 
-    // ігнор основного Link
+    ev.preventDefault();
+
     ev.stopPropagation();
-    console.log('handleEdit', id);
+
     navigate(`/movies/${id}/edit`);
   };
 
@@ -43,7 +42,6 @@ export default function MoviesList ({ movies }) {
               }}
             >
               <span style={{ flexGrow: 1 }}>
-                {/* відштовхує іконки в кінець */}
                 {movie.title || 'Unnamed movie'}
               </span>
               <DeleteForeverIcon onClick={() => handleDelete(movie.id)} />
