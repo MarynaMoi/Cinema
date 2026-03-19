@@ -41,27 +41,6 @@
         "Shutter Island"
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg"
-    },
-    {
-      "id": "bgroDTG2gCfDFsUajdNYP",
-      "fullname": "пп",
-      "birthday": "",
-      "nationality": "пппппп",
-      "movies": [
-        "пп",
-        "ппппппп ппппппппп пппппппп",
-        "",
-        "ппппппп ппппппппп пппппппп",
-        "",
-        "ппппппп ппппппппп пппппппп",
-        "",
-        "ппппппп ппппппппп пппппппп",
-        "",
-        "ппппппп ппппппппп пппппппп",
-        "",
-        "одв "
-      ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg"
     }
   ],
   "directors": [
@@ -106,17 +85,6 @@
         "Jaws"
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Steven_Spielberg_by_Gage_Skidmore.jpg"
-    },
-    {
-      "id": "HdBIKHZy4syEihyia7Kmw",
-      "fullname": "пп",
-      "birthday": "gg",
-      "nationality": "gg",
-      "movies": [
-        "gg",
-        "gg"
-      ],
-      "image": "gg"
     }
   ],
   "movies": [
@@ -200,25 +168,6 @@
         "20th Century Fox"
       ],
       "poster": "https://upload.wikimedia.org/wikipedia/en/f/fc/Fight_Club_poster.jpg"
-    },
-    {
-      "id": "JPUUCwe9lAYxRrGHvRM8N",
-      "title": "ааа",
-      "directors": [
-        "пп",
-        ""
-      ],
-      "actors": [
-        "ввввввв",
-        "уууууууууууу",
-        "мммммммммммммммм",
-        ""
-      ],
-      "studios": [
-        "студ",
-        "студ2"
-      ],
-      "poster": ""
     }
   ],
   "studios": [
@@ -232,7 +181,7 @@
         "The Dark Knight",
         "Harry Potter and the Sorcerer's Stone"
       ],
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Warner_Bros._Pictures_2023_logo.svg"
+      "logo": "https://cdn4.suspilne.media/images/b39625d140fe1785.png"
     },
     {
       "id": "2",
@@ -244,7 +193,7 @@
         "Fast & Furious",
         "Jaws"
       ],
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/6/67/Universal_Pictures_logo.svg"
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJeVnjxADm5k67uBeJsh6cWlm41cj2eVxRAw&s"
     },
     {
       "id": "3",
@@ -256,7 +205,7 @@
         "Mission: Impossible",
         "Transformers"
       ],
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Paramount_Pictures_2022_logo.svg"
+      "logo": "https://mma.prnewswire.com/media/2337495/Paramount_Pictures_Logo.jpg"
     }
   ]
 }

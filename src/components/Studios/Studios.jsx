@@ -21,7 +21,7 @@ export default function Studios () {
 
   return (
     <Stack spacing={2}>
-      <Link to='/Studios/new' style={{ textDecoration: 'none' }}>
+      <Link to='/studios/new' style={{ textDecoration: 'none' }}>
         <Button variant='greenBtn'>Add Studio</Button>
       </Link>
       {/* Link не визначає, що показати на новій стр, він лише змінює URL(to), для статичних посилань */}

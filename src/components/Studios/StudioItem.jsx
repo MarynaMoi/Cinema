@@ -24,13 +24,13 @@ export default function studioItem () {
       {/* фото */}
       <Box sx={{ maxWidth: 240 }}>
         <Avatar
-          src={studio.poster}
+          src={studio.logo}
           variant='rounded'
           sx={{
             width: '100%',
             maxWidth: 240,
             height: 'auto',
-            aspectRatio: '3 / 4', // Співвідношення сторін
+            aspectRatio: '4 / 3', // Співвідношення сторін
             fontSize: '100px',
           }}
         >
