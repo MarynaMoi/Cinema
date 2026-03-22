@@ -2,11 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 //-----------------------
-import { Formik, Form, } from 'formik';
-import { Button, Stack,  } from '@mui/material';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import SaveIcon from '@mui/icons-material/Save'; 
+import { Formik, Form } from 'formik';
 //-----------------------
 import {
   addStudioItemAsync,
@@ -14,7 +10,7 @@ import {
   deleteStudioItemAsync,
 } from './../../store/slices/studiosSlices';
 import { createNewStudio } from '../../model/initialState';
-import { renderFieldArray, renderInput } from '../helpers';
+import { renderFieldArray, renderFieldButton, renderInput } from '../helpers';
 //-----------------------
 
 export default function StudiosForm () {
@@ -48,63 +44,19 @@ export default function StudiosForm () {
     navigate('..', { relative: 'path' });
   };
 
-
   const renderForm = ({ values, setFieldValue }) => {
     return (
       <Form>
         {renderInput('title', 'title', values, setFieldValue)}
         {renderInput('location', 'location', values, setFieldValue)}
-        {renderInput('foundationYear', 'foundationYear', values, setFieldValue)}
-        {renderFieldArray('movies', 'Movies List:', values, setFieldValue)}
-
-        <Stack
-          direction='row'
-          spacing={2}
-          sx={{
-            alignItems: 'center',
-            justifyContent: 'space-around',
-            m: 2,
-          }}
-        >
-          <Button
-            type='button'
-            variant='contained'
-            onClick={handleReturn}
-            startIcon={<ArrowBackIcon />}
-            sx={{
-              display: 'inline-flex',
-            }}
-          >
-            Return
-          </Button>
-
-          <Button
-            type='submit'
-            variant='contained'
-            color='success'
-            startIcon={<SaveIcon />}
-            sx={{
-              display: 'inline-flex',
-            }}
-          >
-            Save
-          </Button>
-
-          {studioItem.id !== null && (
-            <Button
-              type='button'
-              variant='outlined'
-              color='error'
-              onClick={handleDelete}
-              startIcon={<DeleteForeverIcon />}
-              sx={{
-                display: 'inline-flex',
-              }}
-            >
-              Delete
-            </Button>
-          )}
-        </Stack>
+        {renderInput(
+          'foundationYear',
+          'foundation Year',
+          values,
+          setFieldValue
+        )}
+        {renderFieldArray('movies', 'Movies:', values)}
+        {renderFieldButton(studioItem.id, handleReturn, handleDelete)}
       </Form>
     );
   };

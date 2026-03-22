@@ -2,11 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 //-----------------------
-import { Formik, Form,} from 'formik';
-import { Button, Stack,  } from '@mui/material';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import SaveIcon from '@mui/icons-material/Save'; 
+import { Formik, Form } from 'formik';
 //-----------------------
 import {
   addActorItemAsync,
@@ -14,10 +10,8 @@ import {
   deleteActorItemAsync,
 } from './../../store/slices/actorsSlices';
 import { createNewActor } from '../../model/initialState';
-import { renderFieldArray, renderInput } from '../helpers';
+import { renderFieldArray, renderInput, renderFieldButton } from '../helpers';
 //-----------------------
-
-
 
 export default function ActorsForm () {
   const dispatch = useDispatch();
@@ -52,7 +46,6 @@ export default function ActorsForm () {
     // прибирає /(останню частину шляху)
   };
 
-
   const renderForm = ({ values, setFieldValue }) => {
     //setFieldValue - ф-я форміка по зміні стану
     return (
@@ -61,56 +54,8 @@ export default function ActorsForm () {
         {renderInput('birthday', 'Birthday', values, setFieldValue)}
         {renderInput('nationality', 'Nationality', values, setFieldValue)}
         {renderInput('image', 'image URL', values, setFieldValue)}
-        {renderFieldArray('movies', 'Movies List:', values, setFieldValue)}
-    
-        <Stack
-          direction='row'
-          spacing={2}
-          sx={{
-            alignItems: 'center',
-            justifyContent: 'space-around',
-            m: 2,
-          }}
-        >
-          <Button
-            type='button'
-            variant='contained'
-            onClick={handleReturn}
-            startIcon={<ArrowBackIcon />}
-            sx={{
-              display: 'inline-flex',
-            }}
-          >
-            Return
-          </Button>
-
-          <Button
-            type='submit'
-            variant='contained'
-            color='success' // робить кнопку зеленою
-            startIcon={<SaveIcon />}
-            sx={{
-              display: 'inline-flex',
-            }}
-          >
-            Save
-          </Button>
-
-          {actorItem.id !== null && (
-            <Button
-              type='button'
-              variant='outlined'
-              color='error' // робить кнопку червоною
-              onClick={handleDelete}
-              startIcon={<DeleteForeverIcon />}
-              sx={{
-                display: 'inline-flex',
-              }}
-            >
-              Delete
-            </Button>
-          )}
-        </Stack>
+        {renderFieldArray('movies', 'Movies:', values)}
+        {renderFieldButton(actorItem.id, handleReturn, handleDelete)}
       </Form>
     );
   };

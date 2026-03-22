@@ -1,8 +1,11 @@
 import { Field, FieldArray } from 'formik';
-import { Button, TextField, Box, IconButton } from '@mui/material';
+import { Button, TextField, Box, IconButton, Stack } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddIcon from '@mui/icons-material/Add';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
+//-----------------------
 
 export const renderInput = (name, placeholder, values, setFieldValue) => (
   <Box position='relative' sx={{ m: 2 }}>
@@ -23,6 +26,7 @@ export const renderInput = (name, placeholder, values, setFieldValue) => (
     {values[name] && (
       <Box
         onClick={() => setFieldValue(name, '')}
+        // setFieldValue підставляє значення котре я скажу
         sx={{
           cursor: 'pointer',
           position: 'absolute',
@@ -45,7 +49,7 @@ export const renderInput = (name, placeholder, values, setFieldValue) => (
   </Box>
 );
 
-export const renderFieldArray = (name, placeholder, values, setFieldValue) => {
+export const renderFieldArray = (name, placeholder, values) => {
   return (
     <Box position='relative' sx={{ m: 2 }}>
       <FieldArray name={name}>
@@ -101,5 +105,56 @@ export const renderFieldArray = (name, placeholder, values, setFieldValue) => {
         )}
       </FieldArray>
     </Box>
+  );
+};
+
+export const renderFieldButton = (id, handleReturn, handleDelete) => {
+  return (
+    <Stack
+      direction='row'
+      spacing={2}
+      sx={{
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        m: 2,
+      }}
+    >
+      <Button
+        type='button'
+        variant='contained'
+        onClick={handleReturn}
+        startIcon={<ArrowBackIcon />}
+        sx={{
+          display: 'inline-flex',
+        }}
+      >
+        Return
+      </Button>
+      <Button
+        type='submit'
+        variant='contained'
+        color='success' // робить кнопку зеленою
+        startIcon={<SaveIcon />}
+        sx={{
+          display: 'inline-flex',
+        }}
+      >
+        Save
+      </Button>
+      {id !== null && (
+        <Button
+          type='button'
+          variant='outlined'
+          color='error' // робить кнопку червоною
+          onClick={handleDelete}
+          startIcon={<DeleteForeverIcon />}
+          sx={{
+            display: 'inline-flex',
+          }}
+        >
+          Delete
+        </Button>
+      )}
+    </Stack>
   );
 };
