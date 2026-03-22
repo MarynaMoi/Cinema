@@ -9,7 +9,6 @@ export default function Directors () {
       <Link to='/directors/new' style={{ textDecoration: 'none' }}>
         <Button variant='greenBtn'>Add Director</Button>
       </Link>
-
       <DirectorsList />
     </Stack>
   );

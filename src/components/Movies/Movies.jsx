@@ -9,7 +9,6 @@ export default function Movies () {
       <Link to='/movies/new' style={{ textDecoration: 'none' }}>
         <Button variant='greenBtn'>Add Movie</Button>
       </Link>
-
       <MoviesList />
     </Stack>
   );

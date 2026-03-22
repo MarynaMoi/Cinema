@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
-import { TextField, Stack, IconButton, Paper } from '@mui/material';
+import { Stack,  Paper } from '@mui/material';
 import MovieFilterIcon from '@mui/icons-material/MovieFilter';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import NightlightRoundOutlinedIcon from '@mui/icons-material/NightlightRoundOutlined';

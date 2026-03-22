@@ -20,9 +20,9 @@ export default function ActorsList () {
 
 
   const handleDelete = id => {
-    console.log('handleDelete', id);
     dispatch(deleteActorItemAsync(id));
   };
+
   const handleEdit = (ev, id) => {
     ev.preventDefault(); 
     // ігнор основного Link

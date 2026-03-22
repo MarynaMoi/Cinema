@@ -1,19 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
-import { Formik, Form, Field, FieldArray } from 'formik';
-import { Button, TextField, Stack, Box, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+//-----------------------
+import { Formik, Form, } from 'formik';
+import { Button,  Stack, } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import SaveIcon from '@mui/icons-material/Save'; // за бажанням для Save
+import SaveIcon from '@mui/icons-material/Save'; 
+//-----------------------
 import {
   addDirectorItemAsync,
   updateDirectorItemAsync,
   deleteDirectorItemAsync,
 } from './../../store/slices/directorsSlices';
 import { createNewDirector } from '../../model/initialState';
+import { renderFieldArray, renderInput } from '../helpers';
+//-----------------------
 
 export default function DirectorsForm () {
   const dispatch = useDispatch();
@@ -45,48 +47,6 @@ export default function DirectorsForm () {
     navigate('..', { relative: 'path' });
   };
 
-  const renderInput = (name, placeholder, values, setFieldValue) => (
-    <Box position='relative' sx={{ m: 2 }}>
-      <Field
-        as={TextField}
-        name={name}
-        placeholder={placeholder}
-        size='small'
-        fullWidth
-        sx={{
-          '& legend': { display: 'none' },
-          '& .MuiOutlinedInput-input': {
-            fontSize: '14px',
-            pr: '24px',
-          },
-        }}
-      />
-      {values[name] && (
-        <Box
-          onClick={() => setFieldValue(name, '')}
-          sx={{
-            cursor: 'pointer',
-            position: 'absolute',
-            right: 4,
-            top: 6,
-            zIndex: 10,
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <CloseIcon
-            sx={{
-              color: 'gray',
-
-              width: 20,
-              height: 20,
-            }}
-          />
-        </Box>
-      )}
-    </Box>
-  );
-
   const renderForm = ({ values, setFieldValue }) => {
     return (
       <Form>
@@ -94,59 +54,8 @@ export default function DirectorsForm () {
         {renderInput('birthday', 'Birthday', values, setFieldValue)}
         {renderInput('nationality', 'Nationality', values, setFieldValue)}
         {renderInput('image', 'image URL', values, setFieldValue)}
-        <Box sx={{ m: 2 }}>Movies List:</Box>
-        <FieldArray name='movies'>
-          {({ push, remove }) => (
-            <Box>
-              {values.movies &&
-                values.movies.map((_, index) => (
-                  <Box
-                    key={index}
-                    position='relative'
-                    sx={{ display: 'flex', alignItems: 'center', m: 2 }}
-                  >
-                    <Field
-                      as={TextField}
-                      name={`movies.${index}`}
-                      placeholder='Movie title'
-                      variant='outlined'
-                      size='small'
-                      fullWidth
-                      sx={{
-                        '& .MuiOutlinedInput-input': {
-                          fontSize: '14px',
-                          height: '12px',
-                        },
-                      }}
-                    />
-                    <IconButton
-                      onClick={() => remove(index)}
-                      size='small'
-                      color='error'
-                      sx={{ ml: 1 }}
-                    >
-                      <DeleteForeverIcon fontSize='small' />
-                    </IconButton>
-                  </Box>
-                ))}
-              <Button
-                startIcon={<AddIcon />}
-                size='small'
-                onClick={() => push('')}
-                variant='outlined'
-                sx={{
-                  display: 'inline-flex',
-                  fontSize: '12px',
-                  ml: 2,
-                  maxWidth: '120px',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                Add movie
-              </Button>
-            </Box>
-          )}
-        </FieldArray>
+        {renderFieldArray('movies', 'Movies List:', values, setFieldValue)}
+
         <Stack
           direction='row'
           spacing={2}

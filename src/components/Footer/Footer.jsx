@@ -1,5 +1,5 @@
 import TelegramIcon from '@mui/icons-material/Telegram';
-import { Box, Typography, Link, Stack, Paper } from '@mui/material';
+import { Typography, Link, Stack, Paper } from '@mui/material';
 
 export default function Footer () {
   return (

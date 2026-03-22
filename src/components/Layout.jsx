@@ -1,10 +1,11 @@
 import Box from '@mui/material/Box';
-
 import { Outlet } from 'react-router-dom';
+//--------------------------------
 import Header from './Header/Header';
-import CinemaService from './Service/CinemaService';
+import CinemaService from './CinemaService/CinemaService';
 import Footer from './Footer/Footer';
 import NavBar from './Navigation/NavBar';
+//----------------------------------------
 
 export default function Layout ({ toggleTheme, mode }) {
   return (
