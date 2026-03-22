@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from './../../api/service';
 
+import { setFetching, setError, setFulfilled } from '../helpers';
 import {
   actorsState,
   ACTOR_SLICE_NAME,
@@ -13,14 +14,6 @@ const initialState = {
   isFetching: false,
   error: null,
 };
-const setFetching = state => {
-  state.isFetching = true;
-  state.error = null;
-};
-const setError = (state, action) => {
-  state.isFetching = false;
-  state.error = action.payload;
-};
 
 export const getActorsAsync = createAsyncThunk(
   `${ACTOR_SLICE_NAME}/getActorsAsync`,
@@ -30,9 +23,10 @@ export const getActorsAsync = createAsyncThunk(
       if (response.status >= 400) {
         throw new Error('Error fetching actors:');
       }
-      const { data } = response;
-      dispatch(getActors(data));
-      return data;
+      // const { data } = response;
+      // dispatch(getActors(data));
+
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -46,8 +40,8 @@ export const deleteActorItemAsync = createAsyncThunk(
       if (response.status >= 400) {
         throw new Error('Error delete actor:');
       }
-      dispatch(removeActor(id));
-
+      // dispatch(removeActor(id));
+      return id;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -57,15 +51,13 @@ export const updateActorItemAsync = createAsyncThunk(
   `${ACTOR_SLICE_NAME}/updateActorItemAsync`,
   async function (actor, { rejectWithValue, dispatch }) {
     try {
-      const response = await api.put(
-        `/${ACTOR_SLICE_NAME}/${actor.id}`,
-        actor
-      );
+      const response = await api.put(`/${ACTOR_SLICE_NAME}/${actor.id}`, actor);
       if (response.status >= 400) {
         throw new Error('Error updating actor:');
       }
-      const { data } = response;
-      dispatch(updateactor(data));
+      // const { data } = response;
+      // dispatch(updateActor(data));
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -80,8 +72,8 @@ export const addActorItemAsync = createAsyncThunk(
       if (response.status >= 400) {
         throw new Error('Error add actor:');
       }
-      dispatch(addActor(response.data));
-
+      // dispatch(addActor(response.data));
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -91,39 +83,56 @@ export const addActorItemAsync = createAsyncThunk(
 const actorsSlice = createSlice({
   name: ACTOR_SLICE_NAME,
   initialState,
-  reducers: {
-    addActor (state, { payload }) {
-      state.actors = [...state.actors, payload];
-    },
-    updateactor (state, { payload }) {
-      state.actors = state.actors.map(item =>
-        item.id === payload.id ? payload : item
-      );
-    },
-    getActors (state, { payload }) {
-      state.actors = payload;
-    },
-    removeActor (state, { payload }) {
-      state.actors = state.actors.filter(item => item.id !== payload);
-    },
+  // reducers: {
+    // addActor (state, { payload }) {
+    //   state.actors = [...state.actors, payload];
+    // },
+    // updateActor (state, { payload }) {
+    //   state.actors = state.actors.map(item =>
+    //     item.id === payload.id ? payload : item
+    //   );
+    // },
+    // getActors (state, { payload }) {
+    //   state.actors = payload;
+    // },
+    // removeActor (state, { payload }) {
+    //   state.actors = state.actors.filter(item => item.id !== payload);
+    // },
     // selectActor (state, { payload }) {
     //   state.actorItem = payload;
     // },
-
-  },
+  // },
   extraReducers: builder => {
+    builder.addCase(getActorsAsync.fulfilled, (state, { payload }) => {
+      setFulfilled(state);
+      state.actors = payload;
+    });
     builder.addCase(getActorsAsync.rejected, setError);
     builder.addCase(getActorsAsync.pending, setFetching);
+    builder.addCase(deleteActorItemAsync.fulfilled, (state, { payload }) => {
+      setFulfilled(state);
+      state.actors = state.actors.filter(item => item.id !== payload);
+    });
     builder.addCase(deleteActorItemAsync.rejected, setError);
     builder.addCase(deleteActorItemAsync.pending, setFetching);
+    builder.addCase(updateActorItemAsync.fulfilled, (state, { payload }) => {
+      setFulfilled(state);
+      state.actors = state.actors.map(item =>
+        item.id === payload.id ? payload : item
+      );
+    });
     builder.addCase(updateActorItemAsync.rejected, setError);
     builder.addCase(updateActorItemAsync.pending, setFetching);
+    builder.addCase(addActorItemAsync.fulfilled, (state, { payload }) => {
+      setFulfilled(state);
+      state.actors = [...state.actors, payload];
+    });
     builder.addCase(addActorItemAsync.rejected, setError);
     builder.addCase(addActorItemAsync.pending, setFetching);
   },
 });
 
 const { actions, reducer } = actorsSlice;
-const { addActor, updateactor, getActors, removeActor } = actions;
+// const { addActor, updateActor, getActors, removeActor } = actions;
 // export const { selectActor, } = actions;
 export default reducer;

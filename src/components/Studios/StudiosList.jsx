@@ -19,7 +19,7 @@ export default function studiosList () {
   useEffect(() => {
     dispatch(getStudiosAsync());
   }, []);
-  
+
   const handleDelete = id => {
     dispatch(deleteStudioItemAsync(id));
   };
