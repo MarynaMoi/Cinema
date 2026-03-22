@@ -17,14 +17,12 @@ const initialState = {
 
 export const getActorsAsync = createAsyncThunk(
   `${ACTOR_SLICE_NAME}/getActorsAsync`,
-  async function (__, { rejectWithValue, dispatch }) {
+  async function (__, { rejectWithValue }) {
     try {
       const response = await api.get(`/${ACTOR_SLICE_NAME}`);
       if (response.status >= 400) {
         throw new Error('Error fetching actors:');
       }
-      // const { data } = response;
-      // dispatch(getActors(data));
 
       return response.data;
     } catch (error) {
@@ -34,13 +32,12 @@ export const getActorsAsync = createAsyncThunk(
 );
 export const deleteActorItemAsync = createAsyncThunk(
   `${ACTOR_SLICE_NAME}/deleteActorItemAsync`,
-  async function (id, { rejectWithValue, dispatch }) {
+  async function (id, { rejectWithValue }) {
     try {
       const response = await api.delete(`/${ACTOR_SLICE_NAME}/${id}`);
       if (response.status >= 400) {
         throw new Error('Error delete actor:');
       }
-      // dispatch(removeActor(id));
       return id;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -49,14 +46,13 @@ export const deleteActorItemAsync = createAsyncThunk(
 );
 export const updateActorItemAsync = createAsyncThunk(
   `${ACTOR_SLICE_NAME}/updateActorItemAsync`,
-  async function (actor, { rejectWithValue, dispatch }) {
+  async function (actor, { rejectWithValue }) {
     try {
       const response = await api.put(`/${ACTOR_SLICE_NAME}/${actor.id}`, actor);
       if (response.status >= 400) {
         throw new Error('Error updating actor:');
       }
-      // const { data } = response;
-      // dispatch(updateActor(data));
+
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -65,14 +61,14 @@ export const updateActorItemAsync = createAsyncThunk(
 );
 export const addActorItemAsync = createAsyncThunk(
   `${ACTOR_SLICE_NAME}/addActorItemAsync`,
-  async function (actor, { rejectWithValue, dispatch }) {
+  async function (actor, { rejectWithValue }) {
     console.log(actor);
     try {
       const response = await api.post(`/${ACTOR_SLICE_NAME}`, actor);
       if (response.status >= 400) {
         throw new Error('Error add actor:');
       }
-      // dispatch(addActor(response.data));
+
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -83,25 +79,6 @@ export const addActorItemAsync = createAsyncThunk(
 const actorsSlice = createSlice({
   name: ACTOR_SLICE_NAME,
   initialState,
-  // reducers: {
-    // addActor (state, { payload }) {
-    //   state.actors = [...state.actors, payload];
-    // },
-    // updateActor (state, { payload }) {
-    //   state.actors = state.actors.map(item =>
-    //     item.id === payload.id ? payload : item
-    //   );
-    // },
-    // getActors (state, { payload }) {
-    //   state.actors = payload;
-    // },
-    // removeActor (state, { payload }) {
-    //   state.actors = state.actors.filter(item => item.id !== payload);
-    // },
-    // selectActor (state, { payload }) {
-    //   state.actorItem = payload;
-    // },
-  // },
   extraReducers: builder => {
     builder.addCase(getActorsAsync.fulfilled, (state, { payload }) => {
       setFulfilled(state);
@@ -132,7 +109,5 @@ const actorsSlice = createSlice({
   },
 });
 
-const { actions, reducer } = actorsSlice;
-// const { addActor, updateActor, getActors, removeActor } = actions;
-// export const { selectActor, } = actions;
+const { reducer } = actorsSlice;
 export default reducer;
