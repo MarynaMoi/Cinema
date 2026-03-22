@@ -10,7 +10,12 @@ import {
   deleteActorItemAsync,
 } from './../../store/slices/actorsSlices';
 import { createNewActor } from '../../model/initialState';
-import { renderFieldArray, renderInput, renderFieldButton } from '../helpers';
+import {
+  renderFieldArray,
+  renderInput,
+  renderFieldButton,
+} from '../helpers';
+import { nameSchema } from '../../util/schema';
 //-----------------------
 
 export default function ActorsForm () {
@@ -37,31 +42,40 @@ export default function ActorsForm () {
 
   const handleDelete = () => {
     dispatch(deleteActorItemAsync(actorItem.id));
-    // if (!actorItem) {
-    //   return <Typography>Loading actor data...</Typography>;
-    // }
   };
   const handleReturn = () => {
     navigate('..', { relative: 'path' });
     // прибирає /(останню частину шляху)
   };
 
-  const renderForm = ({ values, setFieldValue }) => {
+  const renderForm = ({ values, setFieldValue, isValid, touched, errors  }) => {
     //setFieldValue - ф-я форміка по зміні стану
     return (
       <Form>
-        {renderInput('fullname', 'Full Name', values, setFieldValue)}
+        {renderInput(
+          'fullname',
+          'Full Name',
+          values,
+          setFieldValue,
+          errors,
+          touched
+        )}
         {renderInput('birthday', 'Birthday', values, setFieldValue)}
         {renderInput('nationality', 'Nationality', values, setFieldValue)}
         {renderInput('image', 'image URL', values, setFieldValue)}
         {renderFieldArray('movies', 'Movies:', values)}
-        {renderFieldButton(actorItem.id, handleReturn, handleDelete)}
+        {renderFieldButton(actorItem.id, handleReturn, handleDelete, isValid)}
       </Form>
     );
   };
 
   return (
-    <Formik enableReinitialize initialValues={actorItem} onSubmit={onSaveActor}>
+    <Formik
+      enableReinitialize
+      initialValues={actorItem}
+      validationSchema={nameSchema}
+      onSubmit={onSaveActor}
+    >
       {renderForm}
     </Formik>
   );

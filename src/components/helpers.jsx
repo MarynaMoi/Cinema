@@ -7,12 +7,21 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
 //-----------------------
 
-export const renderInput = (name, placeholder, values, setFieldValue) => (
+export const renderInput = (
+  name,
+  placeholder,
+  values,
+  setFieldValue,
+  errors = {},
+  touched = {}
+) => (
   <Box position='relative' sx={{ m: 2 }}>
     <Field
       as={TextField}
       name={name}
       placeholder={placeholder}
+      error={touched[name] && Boolean(errors[name])}
+      helperText={touched[name] && errors[name]}
       size='small'
       fullWidth
       sx={{
@@ -108,7 +117,7 @@ export const renderFieldArray = (name, placeholder, values) => {
   );
 };
 
-export const renderFieldButton = (id, handleReturn, handleDelete) => {
+export const renderFieldButton = (id, handleReturn, handleDelete, isValid) => {
   return (
     <Stack
       direction='row'
@@ -135,6 +144,7 @@ export const renderFieldButton = (id, handleReturn, handleDelete) => {
         variant='contained'
         color='success' // робить кнопку зеленою
         startIcon={<SaveIcon />}
+        disabled={!isValid}
         sx={{
           display: 'inline-flex',
         }}
@@ -158,4 +168,5 @@ export const renderFieldButton = (id, handleReturn, handleDelete) => {
     </Stack>
   );
 };
+
 

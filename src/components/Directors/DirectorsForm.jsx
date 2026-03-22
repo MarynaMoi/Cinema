@@ -37,9 +37,6 @@ export default function DirectorsForm () {
   const handleDelete = () => {
     dispatch(deleteDirectorItemAsync(directorItem.id));
      handleReturn()
-    // if (!directorItem) {
-    //   return <Typography>Loading director data...</Typography>;
-    // }
   };
   const handleReturn = () => {
     navigate('..', { relative: 'path' });

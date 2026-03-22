@@ -36,9 +36,6 @@ export default function StudiosForm () {
 
   const handleDelete = () => {
     dispatch(deleteStudioItemAsync(studioItem.id));
-    // if (!studioItem) {
-    //   return <Typography>Loading Studio data...</Typography>;
-    // }
   };
   const handleReturn = () => {
     navigate('..', { relative: 'path' });
