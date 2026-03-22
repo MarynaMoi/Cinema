@@ -30,6 +30,7 @@ export default function DirectorsForm () {
       resetForm();
     } else {
       dispatch(updateDirectorItemAsync(values));
+      handleReturn()
     }
   };
 

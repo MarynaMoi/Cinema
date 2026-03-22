@@ -22,7 +22,6 @@ export default function ActorsForm () {
   const actorItem = id
     ? actors.find(a => a.id === id) ?? createNewActor()
     : createNewActor();
-  console.log(id);
 
   const onSaveActor = (values, { resetForm }) => {
     console.log(values);
@@ -32,6 +31,7 @@ export default function ActorsForm () {
       resetForm();
     } else {
       dispatch(updateActorItemAsync(values));
+      navigate('..', { relative: 'path' });
     }
   };
 

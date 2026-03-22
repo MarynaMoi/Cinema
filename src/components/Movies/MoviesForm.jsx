@@ -22,7 +22,6 @@ export default function MoviesForm () {
   const movieItem = id
     ? movies.find(a => a.id === id) ?? createNewMovie()
     : createNewMovie();
-  console.log(id);
 
   const onSaveMovie = (values, { resetForm }) => {
     if (!values.id) {
@@ -31,6 +30,7 @@ export default function MoviesForm () {
       resetForm();
     } else {
       dispatch(updateMovieItemAsync(values));
+      handleReturn();
     }
   };
 
@@ -48,6 +48,7 @@ export default function MoviesForm () {
     return (
       <Form>
         {renderInput('title', 'title', values, setFieldValue)}
+        {renderInput('poster', 'poster URL:', values, setFieldValue)}
         {renderFieldArray('actors', 'Actors:', values)}
         {renderFieldArray('directors', 'Directors:', values)}
         {renderFieldArray('studios', 'Studios:', values)}

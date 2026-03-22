@@ -22,7 +22,6 @@ export default function StudiosForm () {
   const studioItem = id
     ? studios.find(a => a.id === id) ?? createNewStudio()
     : createNewStudio();
-  console.log(id);
 
   const onSaveStudio = (values, { resetForm }) => {
     if (!values.id) {
@@ -31,6 +30,7 @@ export default function StudiosForm () {
       resetForm();
     } else {
       dispatch(updateStudioItemAsync(values));
+      navigate('..', { relative: 'path' });
     }
   };
 
@@ -55,6 +55,7 @@ export default function StudiosForm () {
           values,
           setFieldValue
         )}
+        {renderInput('logo', 'logo URL', values, setFieldValue)}
         {renderFieldArray('movies', 'Movies:', values)}
         {renderFieldButton(studioItem.id, handleReturn, handleDelete)}
       </Form>
