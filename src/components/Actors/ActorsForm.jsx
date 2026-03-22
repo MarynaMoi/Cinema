@@ -37,9 +37,9 @@ export default function ActorsForm () {
 
   const handleDelete = () => {
     dispatch(deleteActorItemAsync(actorItem.id));
-    if (!actorItem) {
-      return <Typography>Loading actor data...</Typography>;
-    }
+    // if (!actorItem) {
+    //   return <Typography>Loading actor data...</Typography>;
+    // }
   };
   const handleReturn = () => {
     navigate('..', { relative: 'path' });

@@ -36,9 +36,9 @@ export default function MoviesForm () {
 
   const handleDelete = () => {
     dispatch(deleteMovieItemAsync(movieItem.id));
-    if (!movieItem) {
-      return <Typography>Loading Movie data...</Typography>;
-    }
+    // if (!movieItem) {
+    //   return <Typography>Loading Movie data...</Typography>;
+    // }
   };
   const handleReturn = () => {
     navigate('..', { relative: 'path' });
