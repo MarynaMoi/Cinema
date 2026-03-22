@@ -1,5 +1,5 @@
 import Carousel from 'react-material-ui-carousel';
-import { posters } from '../../constants/';
+import data from '../../../db.json';
 import { Box } from '@mui/material';
 const styles = {
   imgContainerStyle: {
@@ -21,6 +21,12 @@ const styles = {
     objectFit: 'contain',
   },
 };
+
+const posters = data.movies.map(movie => ({
+  id: movie.id,
+  url: movie.poster,
+  alt: movie.title,
+}));
 
 export default function HomePage () {
   return (
