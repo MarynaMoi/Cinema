@@ -11,7 +11,7 @@ import {
 } from './../../store/slices/directorsSlices';
 import { createNewDirector } from '../../model/initialState';
 import { renderFieldArray, renderFieldButton, renderInput } from '../helpers';
-import { schema } from '../../util/schema';
+import { schemaFullname } from '../../util/schema';
 //-----------------------
 
 export default function DirectorsForm () {
@@ -72,7 +72,7 @@ export default function DirectorsForm () {
     <Formik
       enableReinitialize
       initialValues={directorItem}
-      validationSchema={schema}
+      validationSchema={schemaFullname}
       onSubmit={onSaveDirector}
     >
       {renderForm}

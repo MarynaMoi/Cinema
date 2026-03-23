@@ -11,7 +11,7 @@ import {
 } from './../../store/slices/moviesSlices';
 import { createNewMovie } from '../../model/initialState';
 import { renderFieldArray, renderFieldButton, renderInput } from '../helpers';
-import { schema } from '../../util/schema';
+import { schemaTitle } from '../../util/schema';
 //-----------------------
 
 export default function MoviesForm () {
@@ -59,7 +59,7 @@ export default function MoviesForm () {
     <Formik
       enableReinitialize
       initialValues={movieItem}
-      validationSchema={schema}
+      validationSchema={schemaTitle}
       onSubmit={onSaveMovie}
     >
       {renderForm}

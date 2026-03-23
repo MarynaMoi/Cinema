@@ -5,13 +5,13 @@ import { nanoid } from 'nanoid';
 import { Formik, Form } from 'formik';
 //-----------------------
 import {
-  addActorItemAsync,
+  addActorItemAsync, 
   updateActorItemAsync,
   deleteActorItemAsync,
 } from './../../store/slices/actorsSlices';
 import { createNewActor } from '../../model/initialState';
 import { renderFieldArray, renderInput, renderFieldButton } from '../helpers';
-import { schema } from '../../util/schema';
+import { schemaFullname } from '../../util/schema';
 //-----------------------
 
 export default function ActorsForm () {
@@ -67,7 +67,7 @@ export default function ActorsForm () {
     <Formik
       enableReinitialize
       initialValues={actorItem}
-      validationSchema={schema}
+      validationSchema={schemaFullname}
       onSubmit={onSaveActor}
     >
       {renderForm}

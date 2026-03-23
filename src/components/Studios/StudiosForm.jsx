@@ -11,7 +11,7 @@ import {
 } from './../../store/slices/studiosSlices';
 import { createNewStudio } from '../../model/initialState';
 import { renderFieldArray, renderFieldButton, renderInput } from '../helpers';
-import { schema } from '../../util/schema';
+import {schemaTitle} from '../../util/schema';
 //-----------------------
 
 export default function StudiosForm () {
@@ -64,7 +64,7 @@ export default function StudiosForm () {
     <Formik
       enableReinitialize
       initialValues={studioItem}
-      validationSchema={schema}
+      validationSchema={schemaTitle}
       onSubmit={onSaveStudio}
     >
       {renderForm}
