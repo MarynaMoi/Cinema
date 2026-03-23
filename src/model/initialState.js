@@ -17,6 +17,7 @@ export const createNewMovie = () => {
   return {
     id: null,
     title: '',
+    releaseYear: '',
     directors: [],
     actors: [],
     studios: [],

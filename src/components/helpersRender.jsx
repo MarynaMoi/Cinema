@@ -13,11 +13,13 @@ export const renderInput = (
   values,
   setFieldValue,
   errors = {},
-  touched = {}
+  touched = {},
+  type = 'text'
 ) => (
   <Box position='relative' sx={{ m: 2 }}>
     <Field
       as={TextField}
+      type={type}
       name={name}
       placeholder={placeholder}
       error={touched[name] && Boolean(errors[name])}

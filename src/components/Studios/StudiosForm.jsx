@@ -10,8 +10,8 @@ import {
   deleteStudioItemAsync,
 } from './../../store/slices/studiosSlices';
 import { createNewStudio } from '../../model/initialState';
-import { renderFieldArray, renderFieldButton, renderInput } from '../helpers';
-import {schemaTitle} from '../../util/schema';
+import { renderFieldArray, renderFieldButton, renderInput } from '../helpersRender';
+import {schemaStudio} from '../../util/schema';
 //-----------------------
 
 export default function StudiosForm () {
@@ -51,7 +51,7 @@ export default function StudiosForm () {
           'foundationYear',
           'foundation Year',
           values,
-          setFieldValue
+          setFieldValue, errors, touched
         )}
         {renderInput('logo', 'logo URL', values, setFieldValue)}
         {renderFieldArray('movies', 'Movies:', values)}
@@ -64,7 +64,7 @@ export default function StudiosForm () {
     <Formik
       enableReinitialize
       initialValues={studioItem}
-      validationSchema={schemaTitle}
+      validationSchema={schemaStudio}
       onSubmit={onSaveStudio}
     >
       {renderForm}

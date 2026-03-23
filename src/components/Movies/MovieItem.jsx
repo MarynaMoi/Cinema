@@ -39,6 +39,7 @@ export default function MovieItem () {
 
       <Box>
         <Typography variant='h3'>{movie.title}</Typography>
+        <Typography variant='h4'>{movie.releaseYear}</Typography>
 
         <Typography variant='h6' sx={{ fontWeight: 600, mt: '8px' }}>
           Actors:

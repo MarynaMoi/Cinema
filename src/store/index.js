@@ -14,5 +14,5 @@ export default configureStore({
     moviesList: moviesReducer,
     studiosList: studiosReducer,
   },
-   //middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
+   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
 });

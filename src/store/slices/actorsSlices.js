@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from './../../api/service';
 
-import { setFetching, setError, setFulfilled } from '../helpers';
+import { setFetching, setError, setFulfilled } from '../helpersSlice';
 import {
   actorsState,
   ACTOR_SLICE_NAME,

@@ -5,13 +5,17 @@ import { nanoid } from 'nanoid';
 import { Formik, Form } from 'formik';
 //-----------------------
 import {
-  addActorItemAsync, 
+  addActorItemAsync,
   updateActorItemAsync,
   deleteActorItemAsync,
 } from './../../store/slices/actorsSlices';
 import { createNewActor } from '../../model/initialState';
-import { renderFieldArray, renderInput, renderFieldButton } from '../helpers';
-import { schemaFullname } from '../../util/schema';
+import {
+  renderFieldArray,
+  renderInput,
+  renderFieldButton,
+} from '../helpersRender';
+import { schemaActor } from '../../util/schema';
 //-----------------------
 
 export default function ActorsForm () {
@@ -54,7 +58,15 @@ export default function ActorsForm () {
           errors,
           touched
         )}
-        {renderInput('birthday', 'Birthday', values, setFieldValue)}
+        {renderInput(
+          'birthday',
+          'Birthday',
+          values,
+          setFieldValue,
+          errors,
+          touched,
+          'date'
+        )}
         {renderInput('nationality', 'Nationality', values, setFieldValue)}
         {renderInput('image', 'image URL', values, setFieldValue)}
         {renderFieldArray('movies', 'Movies:', values)}
@@ -67,7 +79,7 @@ export default function ActorsForm () {
     <Formik
       enableReinitialize
       initialValues={actorItem}
-      validationSchema={schemaFullname}
+      validationSchema={schemaActor}
       onSubmit={onSaveActor}
     >
       {renderForm}

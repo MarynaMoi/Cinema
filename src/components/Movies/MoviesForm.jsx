@@ -10,8 +10,8 @@ import {
   deleteMovieItemAsync,
 } from './../../store/slices/moviesSlices';
 import { createNewMovie } from '../../model/initialState';
-import { renderFieldArray, renderFieldButton, renderInput } from '../helpers';
-import { schemaTitle } from '../../util/schema';
+import { renderFieldArray, renderFieldButton, renderInput } from '../helpersRender';
+import { schemaMovie } from '../../util/schema';
 //-----------------------
 
 export default function MoviesForm () {
@@ -46,6 +46,7 @@ export default function MoviesForm () {
     return (
       <Form>
         {renderInput('title', 'title *', values, setFieldValue, errors, touched)}
+        {renderInput('releaseYear', 'release Year', values, setFieldValue, errors, touched)}
         {renderInput('poster', 'poster URL:', values, setFieldValue)}
         {renderFieldArray('actors', 'Actors:', values)}
         {renderFieldArray('directors', 'Directors:', values)}
@@ -59,7 +60,7 @@ export default function MoviesForm () {
     <Formik
       enableReinitialize
       initialValues={movieItem}
-      validationSchema={schemaTitle}
+      validationSchema={schemaMovie}
       onSubmit={onSaveMovie}
     >
       {renderForm}

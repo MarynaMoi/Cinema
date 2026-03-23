@@ -10,8 +10,12 @@ import {
   deleteDirectorItemAsync,
 } from './../../store/slices/directorsSlices';
 import { createNewDirector } from '../../model/initialState';
-import { renderFieldArray, renderFieldButton, renderInput } from '../helpers';
-import { schemaFullname } from '../../util/schema';
+import {
+  renderFieldArray,
+  renderFieldButton,
+  renderInput,
+} from '../helpersRender';
+import { schemaDirector } from '../../util/schema';
 //-----------------------
 
 export default function DirectorsForm () {
@@ -54,7 +58,15 @@ export default function DirectorsForm () {
           errors,
           touched
         )}
-        {renderInput('birthday', 'Birthday', values, setFieldValue)}
+        {renderInput(
+          'birthday',
+          'Birthday',
+          values,
+          setFieldValue,
+          errors,
+          touched,
+          'date'
+        )}
         {renderInput('nationality', 'Nationality', values, setFieldValue)}
         {renderInput('image', 'image URL', values, setFieldValue)}
         {renderFieldArray('movies', 'Movies:', values)}
@@ -72,7 +84,7 @@ export default function DirectorsForm () {
     <Formik
       enableReinitialize
       initialValues={directorItem}
-      validationSchema={schemaFullname}
+      validationSchema={schemaDirector}
       onSubmit={onSaveDirector}
     >
       {renderForm}
