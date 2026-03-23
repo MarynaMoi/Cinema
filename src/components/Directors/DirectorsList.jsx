@@ -51,7 +51,7 @@ export default function DirectorsList () {
               }}
             >
               <span style={{ flexGrow: 1 }}>
-                {director.fullname || 'Unnamed Director'}
+                {director.fullname}
               </span>
               <DeleteForeverIcon onClick={() => handleDelete(director.id)} />
               <EditIcon onClick={ev => handleEdit(ev, director.id)} />

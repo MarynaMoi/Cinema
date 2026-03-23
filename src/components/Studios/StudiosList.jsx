@@ -50,7 +50,7 @@ export default function studiosList () {
               }}
             >
               <span style={{ flexGrow: 1 }}>
-                {studio.title || 'Unnamed studio'}
+                {studio.title}
               </span>
               <DeleteForeverIcon onClick={() => handleDelete(studio.id)} />
               <EditIcon onClick={ev => handleEdit(ev, studio.id)} />

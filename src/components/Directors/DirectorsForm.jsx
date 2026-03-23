@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 //-----------------------
-import { Formik, Form, } from 'formik';
+import { Formik, Form } from 'formik';
 //-----------------------
 import {
   addDirectorItemAsync,
@@ -11,6 +11,7 @@ import {
 } from './../../store/slices/directorsSlices';
 import { createNewDirector } from '../../model/initialState';
 import { renderFieldArray, renderFieldButton, renderInput } from '../helpers';
+import { schema } from '../../util/schema';
 //-----------------------
 
 export default function DirectorsForm () {
@@ -30,27 +31,39 @@ export default function DirectorsForm () {
       resetForm();
     } else {
       dispatch(updateDirectorItemAsync(values));
-      handleReturn()
+      handleReturn();
     }
   };
 
   const handleDelete = () => {
     dispatch(deleteDirectorItemAsync(directorItem.id));
-     handleReturn()
+    handleReturn();
   };
   const handleReturn = () => {
     navigate('..', { relative: 'path' });
   };
 
-  const renderForm = ({ values, setFieldValue }) => {
+  const renderForm = ({ values, setFieldValue, isValid, touched, errors }) => {
     return (
       <Form>
-        {renderInput('fullname', 'Full Name', values, setFieldValue)}
+        {renderInput(
+          'fullname',
+          'Full Name *',
+          values,
+          setFieldValue,
+          errors,
+          touched
+        )}
         {renderInput('birthday', 'Birthday', values, setFieldValue)}
         {renderInput('nationality', 'Nationality', values, setFieldValue)}
         {renderInput('image', 'image URL', values, setFieldValue)}
         {renderFieldArray('movies', 'Movies:', values)}
-        {renderFieldButton(directorItem.id, handleReturn, handleDelete)}
+        {renderFieldButton(
+          directorItem.id,
+          handleReturn,
+          handleDelete,
+          isValid
+        )}
       </Form>
     );
   };
@@ -59,6 +72,7 @@ export default function DirectorsForm () {
     <Formik
       enableReinitialize
       initialValues={directorItem}
+      validationSchema={schema}
       onSubmit={onSaveDirector}
     >
       {renderForm}

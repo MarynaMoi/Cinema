@@ -11,6 +11,7 @@ import {
 } from './../../store/slices/moviesSlices';
 import { createNewMovie } from '../../model/initialState';
 import { renderFieldArray, renderFieldButton, renderInput } from '../helpers';
+import { schema } from '../../util/schema';
 //-----------------------
 
 export default function MoviesForm () {
@@ -41,21 +42,26 @@ export default function MoviesForm () {
     navigate('..', { relative: 'path' });
   };
 
-  const renderForm = ({ values, setFieldValue }) => {
+  const renderForm = ({ values, setFieldValue, isValid, touched, errors }) => {
     return (
       <Form>
-        {renderInput('title', 'title', values, setFieldValue)}
+        {renderInput('title', 'title *', values, setFieldValue, errors, touched)}
         {renderInput('poster', 'poster URL:', values, setFieldValue)}
         {renderFieldArray('actors', 'Actors:', values)}
         {renderFieldArray('directors', 'Directors:', values)}
         {renderFieldArray('studios', 'Studios:', values)}
-        {renderFieldButton(movieItem.id, handleReturn, handleDelete)}
+        {renderFieldButton(movieItem.id, handleReturn, handleDelete, isValid)}
       </Form>
     );
   };
 
   return (
-    <Formik enableReinitialize initialValues={movieItem} onSubmit={onSaveMovie}>
+    <Formik
+      enableReinitialize
+      initialValues={movieItem}
+      validationSchema={schema}
+      onSubmit={onSaveMovie}
+    >
       {renderForm}
     </Formik>
   );

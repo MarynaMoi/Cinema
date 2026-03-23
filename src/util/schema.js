@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const nameSchema = Yup.object({
-  fullname: Yup.string()
-    .required('Name is required'),
+export const schema = Yup.object({
+  fullname: Yup.string().required('Name is required'),
+  title: Yup.string().required('Title is required'),
 });

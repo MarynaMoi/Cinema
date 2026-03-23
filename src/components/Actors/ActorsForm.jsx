@@ -10,12 +10,8 @@ import {
   deleteActorItemAsync,
 } from './../../store/slices/actorsSlices';
 import { createNewActor } from '../../model/initialState';
-import {
-  renderFieldArray,
-  renderInput,
-  renderFieldButton,
-} from '../helpers';
-import { nameSchema } from '../../util/schema';
+import { renderFieldArray, renderInput, renderFieldButton } from '../helpers';
+import { schema } from '../../util/schema';
 //-----------------------
 
 export default function ActorsForm () {
@@ -48,13 +44,13 @@ export default function ActorsForm () {
     // прибирає /(останню частину шляху)
   };
 
-  const renderForm = ({ values, setFieldValue, isValid, touched, errors  }) => {
+  const renderForm = ({ values, setFieldValue, isValid, touched, errors }) => {
     //setFieldValue - ф-я форміка по зміні стану
     return (
       <Form>
         {renderInput(
           'fullname',
-          'Full Name',
+          'Full Name *',
           values,
           setFieldValue,
           errors,
@@ -73,7 +69,7 @@ export default function ActorsForm () {
     <Formik
       enableReinitialize
       initialValues={actorItem}
-      validationSchema={nameSchema}
+      validationSchema={schema}
       onSubmit={onSaveActor}
     >
       {renderForm}

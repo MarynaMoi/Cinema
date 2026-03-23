@@ -51,7 +51,7 @@ export default function MoviesList () {
               }}
             >
               <span style={{ flexGrow: 1 }}>
-                {movie.title || 'Unnamed movie'}
+                {movie.title}
               </span>
               <DeleteForeverIcon onClick={() => handleDelete(movie.id)} />
               <EditIcon onClick={ev => handleEdit(ev, movie.id)} />

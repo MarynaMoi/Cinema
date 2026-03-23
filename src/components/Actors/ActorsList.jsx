@@ -52,7 +52,7 @@ export default function ActorsList () {
             >
               <span style={{ flexGrow: 1 }}>
                 {/* відштовхує іконки в кінець */}
-                {actor.fullname || 'Unnamed actor'}
+                {actor.fullname}
               </span>
               <DeleteForeverIcon onClick={() => handleDelete(actor.id)} />
               <EditIcon onClick={ev => handleEdit(ev, actor.id)} />
