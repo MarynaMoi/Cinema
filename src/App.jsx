@@ -22,15 +22,15 @@ function App () {
     palette: {
       mode,
       background: {
-        default: mode === 'light' ? '#9ec2e5' : '#5e5b5b', // фон сторінки
-        paper: mode === 'light' ? '#d3e0fa' : '#1e1e1e', // фон хедера/паперу
+        default: mode === 'light' ? '#9ec2e5' : '#5e5b5b', 
+        paper: mode === 'light' ? '#d3e0fa' : '#1e1e1e', 
       },
     },
     components: {
       MuiButton: {
         variants: [
           {
-            props: { variant: 'greenBtn' }, // власний варіант
+            props: { variant: 'greenBtn' }, 
             style: {
               background: 'linear-gradient(45deg, #a5ca40 30%, #FF8E53 90%)',
               color: 'white',
@@ -43,12 +43,12 @@ function App () {
             fontWeight: 600,
             fontSize: '14px',
             width: '80%',
-            margin: '8px', // m: 2 (2 * 8px)
+            margin: '8px', 
             justifyContent: 'flex-start',
 
-            whiteSpace: 'nowrap', // заборона переносу на новий рядок
-            overflow: 'hidden', // ховає все, що не помістилося
-            minWidth: 0, // дозволяє флекс елементу стискатися менше свого контенту
+            whiteSpace: 'nowrap', 
+            overflow: 'hidden',
+            minWidth: 0, 
             textAlign: 'center',
             display: 'block',
           },
@@ -72,28 +72,22 @@ function App () {
 
   return (
     <ThemeProvider theme={theme}>
-      {/* CssBaseline потрібен для зміни теми? та скидання базових налаштувань */}
       <CssBaseline />
       <Router>
         <Routes>
-          {/* Передаємо ф-ю в Layout, щоб там намалювати кнопку */}
           <Route
             path='/'
             element={<Layout toggleTheme={toggleTheme} mode={mode} />}
           >
             <Route path='/movies/*' element={<Movies />} />
-            {/* Route визначає що показувати (element) для конкретного URL(path) */}
             <Route path='/actors/*' element={<Actors />} />
             <Route path='/studios/*' element={<Studios />} />
             <Route path='/directors/*' element={<Directors />} />
             <Route index element={<HomePage />} />
-            {/* індексний роут (пов'язано з Layout)*/}
             <Route
               path='*'
-              element={<Navigate to='/movies' replace={true} />}
+              element={<Navigate to='/' replace={true} />}
             />
-            {/* '/*' - для дочірніх компонентів, щоб не прописувати повністю шлях */}
-            {/* replace={true} - записує в історію переходи на переадресовані сторінки */}
           </Route>
         </Routes>
       </Router>

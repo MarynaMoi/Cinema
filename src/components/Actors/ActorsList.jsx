@@ -25,7 +25,6 @@ export default function ActorsList () {
 
   const handleEdit = (ev, id) => {
     ev.preventDefault(); 
-    // ігнор основного Link
     ev.stopPropagation();
     navigate(`/actors/${id}/edit`);
   };
@@ -51,7 +50,6 @@ export default function ActorsList () {
               }}
             >
               <span style={{ flexGrow: 1 }}>
-                {/* відштовхує іконки в кінець */}
                 {actor.fullname}
               </span>
               <DeleteForeverIcon onClick={() => handleDelete(actor.id)} />

@@ -35,7 +35,6 @@ export const renderInput = (
     {values[name] && (
       <Box
         onClick={() => setFieldValue(name, '')}
-        // setFieldValue підставляє значення котре я скажу
         sx={{
           cursor: 'pointer',
           position: 'absolute',
@@ -142,7 +141,7 @@ export const renderFieldButton = (id, handleReturn, handleDelete, isValid) => {
       <Button
         type='submit'
         variant='contained'
-        color='success' // робить кнопку зеленою
+        color='success' 
         startIcon={<SaveIcon />}
         disabled={!isValid}
         sx={{
@@ -155,7 +154,7 @@ export const renderFieldButton = (id, handleReturn, handleDelete, isValid) => {
         <Button
           type='button'
           variant='outlined'
-          color='error' // робить кнопку червоною
+          color='error' 
           onClick={handleDelete}
           startIcon={<DeleteForeverIcon />}
           sx={{

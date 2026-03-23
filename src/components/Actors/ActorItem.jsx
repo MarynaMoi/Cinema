@@ -4,7 +4,7 @@ import { Box, Typography, Avatar, Paper } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export default function ActorItem () {
-  const { id } = useParams(); //отримую id з URL
+  const { id } = useParams(); 
   const actors = useSelector(state => state.actorsList.actors);
 
   const actor = actors.find(item => String(item.id) === String(id));
@@ -21,7 +21,6 @@ export default function ActorItem () {
         gap: 4,
       }}
     >
-      {/* фото */}
       <Box sx={{ maxWidth: 240 }}>
         <Avatar
           src={actor.image}
@@ -30,12 +29,11 @@ export default function ActorItem () {
             width: '100%',
             maxWidth: 240,
             height: 'auto',
-            aspectRatio: '3 / 4', // Співвідношення сторін
+            aspectRatio: '3 / 4', 
             fontSize: '100px',
           }}
         >
           <AccountCircleIcon sx={{ fontSize: 'inherit', color: 'gray' }} />
-          {/* якщо картинка за посиланням відсутня аватар підсовує іконку*/}
         </Avatar>
       </Box>
 

@@ -4,9 +4,6 @@ import { Button, Paper } from '@mui/material';
 export default function NavBar () {
   return (
     <Paper sx={{ m: '16px', p: 0 }}>
-      {/* <Button>
-        <Link to=''>Home</Link>
-      </Button> */}
       <Button component={Link} to={''}>
         Home
       </Button>

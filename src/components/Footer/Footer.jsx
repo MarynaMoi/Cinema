@@ -8,7 +8,6 @@ export default function Footer () {
         <Typography>Pet Project 2026 •</Typography>
 
         <Link href='https://t.me/' rel='noopener noreferrer'>
-          {/* для безпеки переходів між сайтами*/}
           <TelegramIcon sx={{ fontSize: 20 }} />
         </Link>
       </Stack>

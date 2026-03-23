@@ -16,7 +16,7 @@ import { schema } from '../../util/schema';
 
 export default function ActorsForm () {
   const dispatch = useDispatch();
-  const { id } = useParams(); // отримую id з URL
+  const { id } = useParams();
   const navigate = useNavigate();
   const actors = useSelector(state => state.actorsList.actors);
 
@@ -41,11 +41,9 @@ export default function ActorsForm () {
   };
   const handleReturn = () => {
     navigate('..', { relative: 'path' });
-    // прибирає /(останню частину шляху)
   };
 
   const renderForm = ({ values, setFieldValue, isValid, touched, errors }) => {
-    //setFieldValue - ф-я форміка по зміні стану
     return (
       <Form>
         {renderInput(
